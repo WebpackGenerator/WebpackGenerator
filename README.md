@@ -1,1 +1,1 @@
-# LipFish
+# Webpack-My-Stack
