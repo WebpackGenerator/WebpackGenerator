@@ -21,7 +21,7 @@ const Login = () => {
       username,
       password,
     };
-    fetch("/loginSubmission", {
+    fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "Application/JSON" },
       body: JSON.stringify(data),

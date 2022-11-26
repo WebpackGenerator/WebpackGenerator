@@ -28,7 +28,7 @@ const Registration = () => {
         email,
         password,
       };
-      fetch("/registrationSubmission", {
+      fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(data),
