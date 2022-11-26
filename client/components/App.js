@@ -1,23 +1,18 @@
 // import hooks and react
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 // import components here
-import AppContainer from './AppContainer.js'
+import AppContainer from "./AppContainer.js";
 
 function App() {
-
- 
   // we will do our initial server calls here
-  useEffect(()=>{
-
-  },[]);
+  useEffect(() => {}, []);
 
   return (
-    <div className='app'>
+    <div className="app">
       <AppContainer />
     </div>
   );
-  
 }
 
 export default App;
