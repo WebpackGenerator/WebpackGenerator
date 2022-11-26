@@ -6,8 +6,7 @@ import Questionnaire from "./Questionnaire.js";
 import WebpackCode from "./WebpackCode.js";
 import NodeCode from "./NodeCode.js";
 import NavBar from "./NavBar.js";
-import LoginForm from "./Login.js";
-import Registration from "./RegistrationForm.js";
+import LoginSignup from "./LoginSignup.js";
 
 function AppContainer() {
   const [showLogin, setLoginVisual] = useState(true);
@@ -32,18 +31,13 @@ function AppContainer() {
     <div className="appContainer">
       <div className="navBar">
         <NavBar loginClick={loginClick} registerClick={registerClick} />
-        <LoginForm showLogin={showLogin} loginClick={loginClick} />
-        <Registration
-          showRegister={showRegister}
-          registerClick={registerClick}
-        />
       </div>
-      <div className="questionContainer">
+      <div className="content">
         <Questionnaire />
-      </div>
-      <div className="codeContainer">
-        <WebpackCode />
-        <NodeCode />
+        <div className="codeContainer">
+          <WebpackCode />
+          <NodeCode />
+        </div>
       </div>
     </div>
   );

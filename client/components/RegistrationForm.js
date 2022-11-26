@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import AppContainer from "./AppContainer.js";
 
-const Registration = ({ showRegister }) => {
+const Registration = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -48,7 +48,8 @@ const Registration = ({ showRegister }) => {
   };
 
   return (
-    <div className={`${showRegister ? "active" : ""} show`}>
+    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
+    <div class='closeSignup' onClick={props.closeSignup}>X</div>
       <form className="registrationForm" onSubmit={(e) => submitUser(e)}>
         <div className="registrationInputs">
           <label>Email Address:</label>
@@ -82,6 +83,7 @@ const Registration = ({ showRegister }) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
+      <div class='switchView' onClick={props.swapView}>LOG IN</div>
     </div>
   );
 };
