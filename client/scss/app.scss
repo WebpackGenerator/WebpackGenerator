@@ -20,9 +20,6 @@ body {
   height: 100%;
   background-color: rgb(198, 156, 212); 
 }
-.webpackCode {
-  height: 75%;
-}
 .webpackCode textarea {
   margin: 2vw 2vw 1vw 2vw;
   width: calc(100% - 4vw);
@@ -39,4 +36,20 @@ body {
   height: calc(100% - 4vw);
   resize: none;
   border: 0;
+}
+
+/* code mirrors */
+.webpackCode {
+  height: calc(75% - 4vw);
+  padding: 2vw;
+}
+.nodeCode {
+  height: calc(25% - 4vw);
+  padding: 2vw;
+}
+.cm-editor {
+  padding: 1vw;
+}
+.cm-focused {
+  outline: none !important;
 }
