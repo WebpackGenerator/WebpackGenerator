@@ -1,13 +1,14 @@
 // import hooks and react
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 // import components here
-import Questionnaire from "./Questionnaire.js";
-import WebpackCode from "./WebpackCode.js";
-import NodeCode from "./NodeCode.js";
-import NavBar from "./NavBar.js";
-import LoginForm from "./Login.js";
-import Registration from "./RegistrationForm.js";
+import Questionnaire from './Questionnaire.js';
+import WebpackCode from './WebpackCode.js';
+import NodeCode from './NodeCode.js';
+import NavBar from './NavBar.js';
+import LoginForm from './Login.js';
+import Registration from './RegistrationForm.js';
+import FormInput from './FormInput.js';
 
 function AppContainer() {
   const [showLogin, setLoginVisual] = useState(true);
@@ -39,7 +40,7 @@ function AppContainer() {
         />
       </div>
       <div className="questionContainer">
-        <Questionnaire />
+        <FormInput />
       </div>
       <div className="codeContainer">
         <WebpackCode />
