@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+}
+
+.appContainer {
+  width: 100%;
+  height: 100%;
+  background-color: beige;
+  display: flex;
+}
+
+.questionContainer {
+  width: 60%;
+  height: 100%;
+  background-color: rgb(160, 132, 199); 
+}
+
+.codeContainer {
+  width: 40%;
+  height: 100%;
+  background-color: rgb(198, 156, 212); 
+}
+.webpackCode {
+  height: 75%;
+}
+.webpackCode textarea {
+  margin: 2vw 2vw 1vw 2vw;
+  width: calc(100% - 4vw);
+  height: calc(100% - 4vw);
+  resize: none;
+  border: 0;
+}
+.nodeCode {
+  height: 25%;
+}
+.nodeCode textarea {
+  margin: 1vw 2vw 2vw 2vw; 
+  width: calc(100% - 4vw);
+  height: calc(100% - 4vw);
+  resize: none;
+  border: 0;
+}

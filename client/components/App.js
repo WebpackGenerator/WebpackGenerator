@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 // import components here
-import Login from "./Login.js";
+import AppContainer from "./AppContainer.js";
 
 function App() {
   // we will do our initial server calls here
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="app">
-      <Login />
+      <AppContainer />
     </div>
   );
 }
