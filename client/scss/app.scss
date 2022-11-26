@@ -38,6 +38,17 @@ body {
   border: 0;
 }
 
+
+//login && nav styling
+.show{
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+}
+
+.show.active{
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
 /* code mirrors */
 .webpackCode {
   height: calc(75% - 4vw);
