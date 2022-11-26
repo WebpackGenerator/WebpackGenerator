@@ -29,16 +29,19 @@ function WebpackCode() {
   const code = {
     requre: [`const path = require('path');`],
     mode: [`mode: process.env.NODE_ENV,`],
-    entry: [],
-    output: [],
+    entry: [`entry: '${entry}',`],
+    output: [`
+      output: {
+        filename: '${output_filename}',
+        path: path.resolve(__dirname, '${output_folder}'),
+      },
+    `],
     module: []
   }
 
   const buildCode = () => {
     let requirements = ''
     let content = '';
-    console.log('code:', code);
-    console.log('code.require', Array.isArray(code.requre))
 
     // adds requirements
     for (let i = 0; i < code.requre.length; i++)  {
@@ -48,8 +51,17 @@ function WebpackCode() {
     // start content
     content += '{\n'
 
+    // mode
     for (let i = 0; i < code.mode.length; i++)  {
       content += code.mode[i] + '\n';
+    }
+    // entry point
+    for (let i = 0; i < code.entry.length; i++)  {
+      content += code.entry[i] + '\n';
+    }
+    // output
+    for (let i = 0; i < code.output.length; i++)  {
+      content += code.output[i] + '\n';
     }
 
     // end obj
@@ -61,8 +73,8 @@ function WebpackCode() {
     // build output
     let output;
     output = requirements;
-    output += 'module.exports ='
-    output += jsonFormatter.format(content);
+    output += 'module.exports = '
+    output += jsonFormatter.format(content, '  ');
 
     return output;
   }
@@ -143,6 +155,9 @@ module.exports = {
   }
 };
 `;
+
+
+
   // on change callback, i dont think we need this?
   // const onChange = React.useCallback((value, viewUpdate) => {
   //   console.log('value:', value);
