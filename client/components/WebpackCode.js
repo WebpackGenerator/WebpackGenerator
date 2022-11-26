@@ -8,33 +8,39 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
 // import components here
 
-
 function WebpackCode() {
-
   // variables
   let htmlWebpackPlugin = false;
   let entry = './src/index.js';
   let output_filename = 'bundle.js';
   let output_folder = 'dist';
-  let react = false;
+  let react = true;
   let css = false;
   let scss = false;
+  let typescript = false;
   let proxy = false;
   let proxyPort = 8080;
 
-
-  let boilerplate =`\
+  let boilerplate = `\
 const path = require('path');
-${(htmlWebpackPlugin)?`const HtmlWebpackPlugin = require('html-webpack-plugin');\n`:``}
+${
+  htmlWebpackPlugin
+    ? `const HtmlWebpackPlugin = require('html-webpack-plugin');\n`
+    : ``
+}
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: '${entry}',
   output: {
     filename: '${output_filename}',
     path: path.resolve(__dirname, '${output_folder}'),
-  },${ (react || css || scss)?`
+  },${
+    react || css || scss
+      ? `
   module: {
-    rules: [${react?`
+    rules: [${
+      react
+        ? `
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
@@ -44,22 +50,34 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         }
-      },`:``}${(scss||css)?`
+      },`
+        : ``
+    }${
+          scss || css
+            ? `
       {
-        ${scss?`test: /\.s?css/`:`test: /\.css/`},
+        ${scss ? `test: /\.s?css/` : `test: /\.css/`},
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'${scss?`, 'sass-loader'`:''}],
-      },`:``}
+        use: ['style-loader', 'css-loader'${scss ? `, 'sass-loader'` : ''}],
+      },`
+            : ``
+        }
     ],
-  },`:``
-  }${(htmlWebpackPlugin)?`
+  },`
+      : ``
+  }${
+    htmlWebpackPlugin
+      ? `
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'index.html',
     }),
-  ],`:``
-  }${(proxy)?`
+  ],`
+      : ``
+  }${
+    proxy
+      ? `
   devServer: {
     port: ${proxyPort},
     static: {
@@ -72,32 +90,33 @@ module.exports = {
         // secure: true,
       },
     },
-  },`:``}
+  },`
+      : ``
+  }
 };
-`
+`;
   // on change callback, i dont think we need this?
   // const onChange = React.useCallback((value, viewUpdate) => {
   //   console.log('value:', value);
   // }, []);
 
   return (
-    <div className='webpackCode'>
+    <div className="webpackCode">
       <CodeMirror
         value={boilerplate}
         // height="75%"
         theme={okaidia}
         extensions={[javascript({ jsx: true })]}
         //onChange={onChange}
-        readOnly='nocursor'
+        readOnly="nocursor"
         basicSetup={{
           lineNumbers: false,
           foldGutter: false,
-          highlightActiveLine: false
+          highlightActiveLine: false,
         }}
       />
     </div>
   );
-  
 }
 
 export default WebpackCode;
