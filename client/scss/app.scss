@@ -49,6 +49,7 @@ body {
 .show.active{
   transform: translateY(100px) scale(0) rotateY(180deg);
   opacity: 0;
+}
 /* code mirrors */
 .webpackCode {
   height: calc(75% - 4vw);
