@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/LipFish/Webpack-My-Stack#readme",
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.1",
+    "@uiw/codemirror-theme-okaidia": "^4.15.1",
+    "@uiw/react-codemirror": "^4.15.1",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.6",

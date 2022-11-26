@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 // import components here
+import AppContainer from './AppContainer.js'
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <div className='app'>
-      content here
+      <AppContainer />
     </div>
   );
   

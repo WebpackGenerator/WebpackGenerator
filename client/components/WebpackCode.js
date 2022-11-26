@@ -1,30 +1,27 @@
 // import hooks and react
 import React, { useEffect, useState } from 'react';
 
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
 // import components here
 
 
 function WebpackCode() {
 
-  const webpackObj = {
-      mode: process.env.NODE_ENV,
-      entry: './client/index',
-      output: {
-        filename: 'bundle.js',
-        path: "path.resolve(__dirname, 'build')",
-      },
-  }
-
-  // we will do our initial server calls here
-  useEffect(()=>{
-
-  },[]);
-
+  const onChange = React.useCallback((value, viewUpdate) => {
+    console.log('value:', value);
+  }, []);
   return (
-    <div className='webpackCode'>
-      <textarea readonly="readonly">{JSON.stringify(webpackObj, null, 2)}</textarea>
-    </div>
+    <CodeMirror
+      value="console.log('hello world!');"
+      height="75%"
+      theme={okaidia}
+      extensions={[javascript({ jsx: true })]}
+      onChange={onChange}
+      readOnly='nocursor'
+    />
   );
   
 }

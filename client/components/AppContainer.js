@@ -19,7 +19,7 @@ function AppContainer() {
   return (
     <div className='appContainer'>
       <div className='questionContainer'>
-        <Questionnaire />
+        <Questionnaire /> 
       </div>
       <div className='codeContainer'>
         <WebpackCode />
