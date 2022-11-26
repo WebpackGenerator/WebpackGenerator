@@ -7,7 +7,7 @@ import AppContainer from "./AppContainer.js";
 
 // import App from "./App,js";
 
-const LoginForm = ({ showLogin }) => {
+const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,7 +34,8 @@ const LoginForm = ({ showLogin }) => {
     });
   };
   return (
-    <div className={`${showLogin ? "active" : ""} show`}>
+    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
+    <div class='closeSignup' onClick={props.closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
           <label>Login:</label>
@@ -59,6 +60,7 @@ const LoginForm = ({ showLogin }) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
+      <div class='switchView' onClick={props.swapView}>SIGN UP</div>
     </div>
   );
 };
