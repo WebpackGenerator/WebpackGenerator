@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 
 // import components here
-import AppContainer from './AppContainer.js'
 
-function App() {
+
+function Questionnaire() {
 
  
   // we will do our initial server calls here
@@ -13,11 +13,11 @@ function App() {
   },[]);
 
   return (
-    <div className='app'>
-      <AppContainer />
+    <div className='questionnaire'>
+    
     </div>
   );
   
 }
 
-export default App;
+export default Questionnaire;

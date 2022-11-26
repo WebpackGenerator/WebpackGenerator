@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = 'mongodb+srv://webpackmystack:lipfish@cluster0.ivrgrpq.mongodb.net/?retryWrites=true&w=majority';
+require('dotenv').config();
+
+const MONGO_URI = `mongodb+srv://webpackmystack:${process.env.PASSWORD}@cluster0.ivrgrpq.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
@@ -16,10 +18,10 @@ const Schema = mongoose.Schema;
 
 // sets a schema for the 'users' collection
 const usersSchema = new Schema({
-  username: String,
-  email: String,
-  password: String,
-  templates: Object,
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  templates: { type: Object },
 });
 
 
