@@ -13,9 +13,7 @@ sessionController.getSessionId = (req,res,next) => {
     resave: false,
     saveUninitialized: true,
   })
-
   return next();
-
 }
 
 

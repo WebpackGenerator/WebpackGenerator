@@ -4,10 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
-const authController = require('../controllers/authentication');
-const sessionController = require('../controllers/sessions');
+const authController = require('./controllers/authentication');
+const sessionController = require('./controllers/sessions');
+const userController = require('./controllers/userController')
 const validator = require('express-validator');
 const session = require('express-session');
+const passport = require('passport');
+const { Users } = require('./models/userModel');
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
+require('../server/controllers/googleOAuth');
 
 
 
@@ -35,20 +40,39 @@ app.use(cookieParser());
 
 //controllers will go here
 
-// send static stuff
 app.get('/', (req, res) => {
-  res.sendFile(__dirname, '../client/index.html');
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
 });
 
-app.use(sessionController.getSessionId);
+app.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+));
 
-app.post('/login', authController.validate, (req, res) => {
+
+// send static stuff
+// app.get('/', (req, res) => {
+//   console.log(__dirname);
+//   res.sendFile(path.join(__dirname, '../index.html'));
+// });
+
+app.use(sessionController.getSessionId);
+// passport.use(Users.createStrategy());
+
+
+app.post('/register', authController.validate, userController.createUser, (req, res) => {
+  
+  return res.status(200).json(res.locals.user);
+});
+
+//  authController.validate, 
+
+app.post('/login', authController.validate, userController.verifyUser, (req, res) => {
   const errors = validationResult(req);
 	if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
 	}
 	else {
-    let username = req.body.username;
+    let username = req.body.email;
     let password = req.body.password;
     res.send(`Username: ${username} Password: ${password}`);
 	}
