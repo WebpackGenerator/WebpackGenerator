@@ -2,12 +2,9 @@
 import React, { useEffect, useState } from 'react';
 
 // import components here
-import Questionnaire from './Questionnaire.js';
 import WebpackCode from './WebpackCode.js';
 import NodeCode from './NodeCode.js';
 import NavBar from './NavBar.js';
-import LoginForm from './Login.js';
-import Registration from './RegistrationForm.js';
 import FormInput from './FormInput.js';
 
 function AppContainer() {
@@ -33,11 +30,6 @@ function AppContainer() {
     <div className="appContainer">
       <div className="navBar">
         <NavBar loginClick={loginClick} registerClick={registerClick} />
-        <LoginForm showLogin={showLogin} loginClick={loginClick} />
-        <Registration
-          showRegister={showRegister}
-          registerClick={registerClick}
-        />
       </div>
       <div className="questionContainer">
         <FormInput />
