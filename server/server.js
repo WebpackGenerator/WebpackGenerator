@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const authController = require('../controllers/authentication');
 const sessionController = require('../controllers/sessions');
+const validator = require('express-validator');
+const session = require('express-session');
+
 
 
 //ENV
