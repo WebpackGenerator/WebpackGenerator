@@ -28,11 +28,6 @@ app.use(cookieParser());
 
 
 
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
 }
@@ -43,7 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.send('<a href="/auth/google"> Authenticate with Google </a>');
+  res.send('<a href="/auth/google"> Authenticate with Google  </a>');
 });
 
 app.get('/auth/google',
@@ -52,14 +47,15 @@ app.get('/auth/google',
 
 app.get( '/auth/google/callback',
   passport.authenticate( 'google', {
-    successRedirect: '/protected',
+    successRedirect: '/',
     failureRedirect: '/auth/google/failure'
   })
 );
 
-app.get('/protected', isLoggedIn, (req, res) => {
-  res.send(`Hello ${req.user.displayName}`);
-});
+// app.get('/', isLoggedIn, (req, res) => {
+
+//   res.send({username: req.user.displayName, success:true}).status(200);
+// });
 
   
     
