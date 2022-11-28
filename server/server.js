@@ -52,15 +52,14 @@ app.get('/auth/google',
 
 app.get( '/auth/google/callback',
   passport.authenticate( 'google', {
-    successRedirect: '/protected',
+    successRedirect: '/',
     failureRedirect: '/auth/google/failure'
   })
 );
 
-app.get('/protected', isLoggedIn, (req, res) => {
-  res.send(`Hello ${req.user.displayName}`);
+app.get('/', isLoggedIn, (req, res) => {
+  res.send({username: req.user.displayName, success:true}).status(200);
 });
-
   
     
 // app.get('/logout', (req, res) => {

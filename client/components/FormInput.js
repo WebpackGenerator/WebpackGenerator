@@ -3,6 +3,9 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { updateOptionsActionCreator } from '../actions/actions';
 
+// comonents
+import Download from './Download';
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateOptions: (options) => dispatch(updateOptionsActionCreator(options)),
@@ -210,6 +213,8 @@ const FormInput = (props) => {
           </div>
         </div>
       </form>
+
+      <Download />
     </div>
   );
 };
