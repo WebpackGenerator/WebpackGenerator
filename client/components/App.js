@@ -12,8 +12,6 @@ function App() {
   return (
     <div className="app">
       <AppContainer />
-      <RegistrationForm />
-
     </div>
   );
 }
