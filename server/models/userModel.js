@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 require('dotenv').config();
-
-const MONGO_URI = `mongodb+srv://webpackmystack:${process.env.PASSWORD}@cluster0.ivrgrpq.mongodb.net/?retryWrites=true&w=majority`;
+// ${process.env.PASSWORD}
+const MONGO_URI = 'mongodb+srv://webpackmystack:lipfish@cluster0.ivrgrpq.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // sets the name of the DB that our collections are part of
-  dbName: 'wpms'
+  dbName: 'wpmsdb'
 })
   .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
@@ -17,17 +18,18 @@ mongoose.connect(MONGO_URI, {
 const Schema = mongoose.Schema;
 
 // sets a schema for the 'users' collection
-const usersSchema = new Schema({
-  username: { type: String, required: true, unique: true },
+const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  templates: { type: Object },
+  template: { type: mongoose.SchemaTypes.Mixed, required: false }
 });
 
 
-const Users = mongoose.model('users', usersSchema);
+userSchema.plugin(passportLocalMongoose);
+
+const Users = mongoose.model('Users', userSchema);
+
+//module.exports = mongoose.model('userData', usersSchema, 'userData');
 
 
-module.exports = {
-  Users,
-};
+module.exports = { Users };
