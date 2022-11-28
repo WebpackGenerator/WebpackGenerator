@@ -129,8 +129,8 @@ module.exports = {
   devServer: {
     port: ${template.proxyPort},
     static: {
-      directory: path.resolve(__dirname, '${template.static_folder}'),
-      publicPath: '${template.static_path}'
+      directory: path.resolve(__dirname, '${template.output_folder}'),
+      publicPath: './${template.output_folder}'
     },
     proxy: {
       '${template.proxy_filepath}': {

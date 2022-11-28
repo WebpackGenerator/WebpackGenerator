@@ -39,11 +39,17 @@ main {
 }
 
 /* form input */
+.questionContainer {
+  width: 50%;
+}
 .formContainer {
-  width: 60%;
+  // width: 60%;
   height: 100%;
   background-color: rgb(160, 132, 199); 
   align-items: stretch;
+}
+.indentedOptions {
+  margin-left: 2em;
 }
 
 /* code */

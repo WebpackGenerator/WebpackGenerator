@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { updateOptionsActionCreator } from '../actions/actions';
 
@@ -10,6 +10,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const FormInput = (props) => {
+
+  const template = useSelector(state => state.webpack.template);
+
   const formChange = (e) => {
     //for (let i = 0; i < e.target)
     const change = {};
@@ -34,17 +37,17 @@ const FormInput = (props) => {
   return (
     <div className="formContainer">
       <form onChange={formChange}>
+        {/* SET UP */}
         <div id="entryField">
           <label className="header">Setup</label>
           <br></br>
           <label>Entry file:</label>
           <input
             type="text"
-            // defaultValue="./src/index.js"
+            defaultValue={template.entry}
             placeholder="./src/index.js"
             name="entry"
             id="entry"
-            // onChange={formChange}
           ></input>
         </div>
         <div id="outputField">
@@ -52,7 +55,7 @@ const FormInput = (props) => {
             <label>Path:</label>
             <input
               type="text"
-              // defaultValue="dist"
+              defaultValue={template.output_folder}
               placeholder="dist"
               name="output_folder"
               id="output_folder"
@@ -63,7 +66,7 @@ const FormInput = (props) => {
             <label>Filename:</label>
             <input
               type="text"
-              // defaultValue="index.js"
+              defaultValue={template.output_filename}
               placeholder="index.js"
               name="output_filename"
               id="output_filename"
@@ -81,6 +84,10 @@ const FormInput = (props) => {
             ></input>
             <label>React</label>
           </div>
+
+          {/* DEV SERVER */}
+          {/* <details>
+          <summary>devServer</summary> */}
           <div id="devServer">
             <label className="header">devServer</label>
             <br></br>
@@ -88,61 +95,48 @@ const FormInput = (props) => {
               <input type="checkbox" value="false" id="devServer"></input>
               <label>Use devServer</label>
             </div>
-            <div id="port" name="type">
-              <label>Port:</label>
-              <input
-                type="text"
-                // defaultValue="8080"
-                placeholder="8080"
-                name="proxyPort"
-                id="proxyPort"
-              ></input>
+
+            {/* dev server configs */}
+            <div class={'indentedOptions ' + (template.devServer ? '' : 'dontShow')}>
+              <div id="port" name="type">
+                <label>Port:</label>
+                <input
+                  type="text"
+                  defaultValue={template.proxyPort}
+                  placeholder="8080"
+                  name="proxyPort"
+                  id="proxyPort"
+                ></input>
+              </div>
+              
+              <div id="proxy" name="type">
+                <label>Proxy Path:</label>
+                <input
+                  type="text"
+                  defaultValue={template.proxy_filepath}
+                  placeholder="/"
+                  name="proxy_filepath"
+                  id="proxy_filepath"
+                ></input>
+                <br></br>
+                <label>Target: </label>
+                <label>http://localhost</label>
+                <input
+                  type="text"
+                  defaultValue={template.proxy_target}
+                  // defaultValue="'http://localhost'"
+                  placeholder="3000"
+                  name="proxy_target"
+                  id="proxy_target"
+                ></input>
+                <br></br>
+              </div>
             </div>
-            <div id="static" name="type">
-              <label>Static:</label>
-              <br></br>
-              <label>Directory Folder:</label>
-              <input
-                type="text"
-                placeholder="path.resolve(__dirname, 'build')"
-                name="static_folder"
-                id="static_folder"
-              ></input>
-              <br></br>
-              <label>Public Path: </label>
-              <input
-                type="text"
-                // defaultValue="'http://localhost'"
-                placeholder="./build"
-                name="static_path"
-                id="static_path"
-              ></input>
-              <br></br>
-            </div>
-            <div id="proxy" name="type">
-              <label>Proxy:</label>
-              <br></br>
-              <label>Proxy Path:</label>
-              <input
-                type="text"
-                // defaultValue="'/'"
-                placeholder="/"
-                name="proxy_filepath"
-                id="proxy_filepath"
-              ></input>
-              <br></br>
-              <label>Target: </label>
-              <label>http://localhost</label>
-              <input
-                type="text"
-                // defaultValue="'http://localhost'"
-                placeholder="3000"
-                name="proxy_target"
-                id="proxy_target"
-              ></input>
-              <br></br>
-            </div>
+
           </div>
+          {/* </details> */}
+
+          {/* STYLING */}
           <div id="style-select" name="type">
             <label className="header">Styling</label>
             <br></br>
@@ -156,6 +150,8 @@ const FormInput = (props) => {
             <label>SASS</label>
             <br></br>
           </div>
+
+          {/* PLUGINS */}
           <div id="plugins">
             <label className="header">Plugins</label>
             <br></br>
@@ -167,20 +163,26 @@ const FormInput = (props) => {
               ></input>
               <label>Html Plugin</label>
               <br></br>
-              <label>Title:</label>
-              <input
-                type="text"
-                placeholder="Development"
-                name="htmlpluginTitle"
-                id="htmlpluginTitle"
-              ></input>
-              <label>Template:</label>
-              <input
-                type="text"
-                placeholder="index.html"
-                name="htmlpluginTemplate"
-                id="htmlpluginTemplate"
-              ></input>
+              
+              <div class={'indentedOptions ' + (template.htmlWebpackPlugin ? '' : 'dontShow')}>
+                <label>Title:</label>
+                <input
+                  type="text"
+                  placeholder="Development"
+                  name="htmlpluginTitle"
+                  id="htmlpluginTitle"
+                  defaultValue={template.htmlpluginTitle}
+                ></input><br></br>
+                <label>Template:</label>
+                <input
+                  type="text"
+                  placeholder="index.html"
+                  name="htmlpluginTemplate"
+                  id="htmlpluginTemplate"
+                  defaultValue={template.htmlpluginTemplate}
+                ></input>
+              </div>
+
             </div>
             <div id="miniCssExtractPlugin" name="type">
               <input
@@ -192,6 +194,8 @@ const FormInput = (props) => {
               <label>Mini CSS Plugin</label>
             </div>
           </div>
+
+          {/* LINTING */}
           <div id="linting">
             <label className="header">Linting</label>
             <br></br>
