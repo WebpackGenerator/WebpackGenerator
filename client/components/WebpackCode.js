@@ -1,5 +1,8 @@
-// import hooks and react
-import React, { useEffect, useState } from 'react';
+// react
+import React, { useEffect } from "react";
+// redux
+//import { connect } from 'react-redux';  // NOT USING - USING useSelector instead.
+import {useSelector, useDispatch} from 'react-redux'
 
 // codemirror
 import CodeMirror from '@uiw/react-codemirror';
@@ -8,38 +11,48 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
 // import components here
 
+// const mapStateToProps = state => {
+//   console.log('STATE', state.webpack);
+//   return state.webpack.template
+// };
+
 function WebpackCode() {
-  // variables
-  let htmlWebpackPlugin = false;
-  let entry = './src/index.js';
-  let output_filename = 'bundle.js';
-  let output_folder = 'dist';
-  let react = true;
-  let css = false;
-  let scss = false;
-  let typescript = false;
-  let proxy = false;
-  let proxyPort = 8080;
+
+  const template = useSelector(state => state.webpack.template);
+  
+  // useEffect(() => {
+  //   console.log("TEST TEST TEST TEST TEST");
+  //   console.log('change: ', template);
+  //   //dispatch({ type: 'A', payload: a });
+  // }, [template]) 
+
+  // update everything when state changes
+  // useEffect(()=> {
+  //   console.log("TEST");
+  // },)
+
+  // console.log('TEMPLATE', template);
+
 
   let boilerplate = `\
 const path = require('path');
 ${
-  htmlWebpackPlugin
+  template.htmlWebpackPlugin
     ? `const HtmlWebpackPlugin = require('html-webpack-plugin');\n`
     : ``
 }
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: '${entry}',
+  entry: '${template.entry}',
   output: {
-    filename: '${output_filename}',
-    path: path.resolve(__dirname, '${output_folder}'),
+    filename: '${template.output_filename}',
+    path: path.resolve(__dirname, '${template.output_folder}'),
   },${
-    react || css || scss
+    template.react || template.css !== ""
       ? `
   module: {
     rules: [${
-      react
+      template.react
         ? `
       {
         test: /\.jsx?/,
@@ -53,12 +66,12 @@ module.exports = {
       },`
         : ``
     }${
-          scss || css
+      template.css !== ""
             ? `
       {
-        ${scss ? `test: /\.s?css/` : `test: /\.css/`},
+        ${template.css === "sass" ? `test: /\.s?css/` : `test: /\.css/`},
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'${scss ? `, 'sass-loader'` : ''}],
+        use: ['style-loader', 'css-loader'${template.css === "sass" ? `, 'sass-loader'` : ''}],
       },`
             : ``
         }
@@ -66,7 +79,7 @@ module.exports = {
   },`
       : ``
   }${
-    htmlWebpackPlugin
+    template.htmlWebpackPlugin
       ? `
   plugins: [
     new HtmlWebpackPlugin({
@@ -76,10 +89,10 @@ module.exports = {
   ],`
       : ``
   }${
-    proxy
+    template.proxy
       ? `
   devServer: {
-    port: ${proxyPort},
+    port: ${template.proxyPort},
     static: {
       directory: path.resolve(__dirname, 'build'),
       publicPath: './build'
@@ -119,4 +132,6 @@ module.exports = {
   );
 }
 
+
 export default WebpackCode;
+//export default connect(mapStateToProps, null)(WebpackCode);

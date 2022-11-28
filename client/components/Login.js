@@ -34,10 +34,8 @@ const LoginForm = (props) => {
     });
   };
   return (
-    <div className={`loginSignup ${props.show ? 'active' : ''} show`}>
-      <div class="closeSignup" onClick={props.closeSignup}>
-        X
-      </div>
+    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
+    <div className='closeSignup' onClick={props.closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
           <label>Login:</label>
@@ -62,9 +60,7 @@ const LoginForm = (props) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
-      <div class="switchView" onClick={props.swapView}>
-        SIGN UP
-      </div>
+      <div className='switchView' onClick={props.swapView}>SIGN UP</div>
     </div>
   );
 };
