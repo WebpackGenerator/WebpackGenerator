@@ -15,22 +15,11 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 require('../server/controllers/googleOAuth');
 
 
-
 //ENV
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-/*
-// monogoURI
-const mongoURI = `mongodb+srv://willemro:${process.env.PW}@bakeit.ixry9we.mongodb.net/?retryWrites=true&w=majority`;
-
-// connect to mongoose
-mongoose.connect(mongoURI)
-  .then(()=>console.log('Connected to MongoDB'))
-  .catch((err)=>console.log(`Error connecting to MongoDB:${err}`));
-  */
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -38,29 +27,60 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 
-//controllers will go here
+
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
+
+
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
+  res.send('<a href="/auth/google"> Authenticate with Google </a>');
 });
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
 ));
 
+app.get( '/auth/google/callback',
+  passport.authenticate( 'google', {
+    successRedirect: '/protected',
+    failureRedirect: '/auth/google/failure'
+  })
+);
+
+app.get('/protected', isLoggedIn, (req, res) => {
+  res.send(`Hello ${req.user.displayName}`);
+});
+
+  
+    
+// app.get('/logout', (req, res) => {
+//   req.logout();
+//   req.session.destroy();
+//   res.send('Goodbye!');
+// });
+
+
 
 // send static stuff
 // app.get('/', (req, res) => {
-//   console.log(__dirname);
-//   res.sendFile(path.join(__dirname, '../index.html'));
+  //   console.log(__dirname);
+  //   res.sendFile(path.join(__dirname, '../index.html'));
 // });
 
-app.use(sessionController.getSessionId);
+// app.use(sessionController.getSessionId);
 // passport.use(Users.createStrategy());
 
-
 app.post('/register', authController.validate, userController.createUser, (req, res) => {
-  
   return res.status(200).json(res.locals.user);
 });
 

@@ -22,7 +22,6 @@ userController.createUser = async (req, res, next) => {
     console.log(e);
     res.send('not working');
   }
-  
   //return next();
 };
 
