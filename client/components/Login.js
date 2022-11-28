@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 //import files
-import RegistrationForm from "./RegistrationForm.js";
-import NavBar from "./NavBar.js";
-import AppContainer from "./AppContainer.js";
+import RegistrationForm from './RegistrationForm.js';
+import NavBar from './NavBar.js';
+import AppContainer from './AppContainer.js';
 
 // import App from "./App,js";
 
 const LoginForm = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const updateUsername = (event) => {
     setUsername(event.target.value);
@@ -23,9 +23,9 @@ const LoginForm = (props) => {
       username,
       password,
     };
-    fetch("/login", {
-      method: "POST",
-      headers: { "Content-Type": "Application/JSON" },
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify(data),
     }).then((result) => {
       if (result.status === 200) {
