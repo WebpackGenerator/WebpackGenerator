@@ -14,6 +14,7 @@ const initialState = {
     react: false,
     css: '',
     typescript: false,
+<<<<<<< HEAD
     devServer: false,
     proxyPort: 8080,
     static: false,
@@ -22,6 +23,13 @@ const initialState = {
     static_folder: 'build',
     static_path: './build',
   },
+=======
+    proxy: false,
+    proxyPort: 8080
+  },
+  projectName: 'MyProject',
+  webpack: 'boilerplate webpack stuff!'
+>>>>>>> dev
 };
 
 const webpackReducer = (state = initialState, action) => {
@@ -41,6 +49,15 @@ const webpackReducer = (state = initialState, action) => {
         template: template,
       };
 
+<<<<<<< HEAD
+=======
+    case types.PUT_WEBPACK_IN_STATE:
+      return {
+        ...state,
+        webpack: action.payload
+      };
+ 
+>>>>>>> dev
     default: {
       return state;
     }
