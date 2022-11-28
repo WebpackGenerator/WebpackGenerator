@@ -33,7 +33,11 @@ const NavBar = ({ loginClick, registerClick }) => {
           <button className="navBarLogin" onClick={showSignup}>
             <label>Sign In</label>
           </button>
+          <span className="title">
+            Webpack My Stack
+          </span>
         </span>
+        
       </div>
     </div>
   );

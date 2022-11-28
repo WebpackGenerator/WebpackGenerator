@@ -21,11 +21,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  template: { type: mongoose.SchemaTypes.Mixed, required: false }
+  //template: { type: mongoose.SchemaTypes.Mixed, required: false }
 });
 
 
-userSchema.plugin(passportLocalMongoose);
+//userSchema.plugin(passportLocalMongoose);
 
 const Users = mongoose.model('users', userSchema);
 
