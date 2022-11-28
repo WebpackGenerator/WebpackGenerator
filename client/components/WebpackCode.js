@@ -9,13 +9,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
-// import components here
-
-// const mapStateToProps = state => {
-//   console.log('STATE', state.webpack);
-//   return state.webpack.template
-// };
-
 function WebpackCode() {
   const template = useSelector((state) => state.webpack.template);
 
@@ -24,6 +17,16 @@ const path = require('path');
 ${
   template.htmlWebpackPlugin
     ? `const HtmlWebpackPlugin = require('html-webpack-plugin');\n`
+    : ``
+}
+${
+  template.miniCssExtractPlugin
+    ? `const MiniCssExtractPlugin = require('mini-css-extract-plugin');\n`
+    : ``
+}
+${
+  template.copyWebpackPlugin
+    ? `const CopyPlugin = require('copy-webpack-plugin');\n`
     : ``
 }
 module.exports = {
@@ -66,28 +69,39 @@ module.exports = {
   },`
       : ``
   }${
-    template.htmlWebpackPlugin
+    template.htmlWebpackPlugin || template.miniCssExtractPlugin
       ? `
-  plugins: [
+  plugins:[
+    ${
+      template.htmlWebpackPlugin
+        ? `    
     new HtmlWebpackPlugin({
-      title: 'Development',
-      template: 'index.html',
-    }),
-  ],`
+      title: '${template.htmlpluginTitle}',
+      template: '${template.htmlpluginTemplate}'
+    }),`
+        : ``
+    }
+    ${
+      template.miniCssExtractPlugin
+        ? `
+    newMiniCssExtractPlugin()`
+        : ``
+    }
+  ]
+  `
       : ``
   }${
-    template.proxy
+    template.devServer
       ? `
   devServer: {
     port: ${template.proxyPort},
     static: {
-      directory: path.resolve(__dirname, 'build'),
-      publicPath: './build'
+      directory: path.resolve(__dirname, '${template.static_folder}'),
+      publicPath: '${template.static_path}'
     },
     proxy: {
-      '/': {
-        target: 'http://localhost:3000',
-        // secure: true,
+      '${template.proxy_filepath}': {
+        target: 'http://localhost:${template.proxy_target}',
       },
     },
   },`

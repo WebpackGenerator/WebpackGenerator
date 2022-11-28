@@ -81,42 +81,54 @@ const FormInput = (props) => {
             ></input>
             <label>React</label>
           </div>
-          {/* <div id="es6-select" name="type">
-            <input
-              type="checkbox"
-              value='false'
-              // onChange={handleSetIsEs6Active}
-            ></input>
-            <label>ES6+</label>
-          </div> */}
           <div id="devServer">
             <label className="header">devServer</label>
             <br></br>
+            <div id="devServer" name="type">
+              <input type="checkbox" value="false" id="devServer"></input>
+              <label>Use devServer</label>
+            </div>
             <div id="port" name="type">
               <label>Port:</label>
               <input
                 type="text"
                 // defaultValue="8080"
                 placeholder="8080"
-                id="port"
-                name="port_name"
-                id="port_name"
+                name="proxyPort"
+                id="proxyPort"
               ></input>
             </div>
             <div id="static" name="type">
               <label>Static:</label>
-              <input type="checkbox" value="false" id="static"></input>
+              <br></br>
+              <label>Directory Folder:</label>
+              <input
+                type="text"
+                placeholder="path.resolve(__dirname, 'build')"
+                name="static_folder"
+                id="static_folder"
+              ></input>
+              <br></br>
+              <label>Public Path: </label>
+              <input
+                type="text"
+                // defaultValue="'http://localhost'"
+                placeholder="./build"
+                name="static_path"
+                id="static_path"
+              ></input>
+              <br></br>
             </div>
             <div id="proxy" name="type">
               <label>Proxy:</label>
               <br></br>
-              <label>File Path:</label>
+              <label>Proxy Path:</label>
               <input
                 type="text"
                 // defaultValue="'/'"
-                placeholder="'/'"
-                name="proxyFilePath"
-                id="proxyFilePath"
+                placeholder="/"
+                name="proxy_filepath"
+                id="proxy_filepath"
               ></input>
               <br></br>
               <label>Target: </label>
@@ -125,8 +137,8 @@ const FormInput = (props) => {
                 type="text"
                 // defaultValue="'http://localhost'"
                 placeholder="3000"
-                name="proxyFilePath"
-                id="proxyFilePath"
+                name="proxy_target"
+                id="proxy_target"
               ></input>
               <br></br>
             </div>
@@ -154,14 +166,30 @@ const FormInput = (props) => {
                 id="htmlWebpackPlugin"
               ></input>
               <label>Html Plugin</label>
+              <br></br>
+              <label>Title:</label>
+              <input
+                type="text"
+                placeholder="Development"
+                name="htmlpluginTitle"
+                id="htmlpluginTitle"
+              ></input>
+              <label>Template:</label>
+              <input
+                type="text"
+                placeholder="index.html"
+                name="htmlpluginTemplate"
+                id="htmlpluginTemplate"
+              ></input>
             </div>
-            <div id="minicssplugin" name="type">
-              <input type="checkbox" value="false" id="minicssplugin"></input>
+            <div id="miniCssExtractPlugin" name="type">
+              <input
+                type="checkbox"
+                value="false"
+                name="miniCssExtractPlugin"
+                id="miniCssExtractPlugin"
+              ></input>
               <label>Mini CSS Plugin</label>
-            </div>
-            <div id="Copy WebPack Plugin" name="type">
-              <input type="checkbox" value="false" id="minicssplugin"></input>
-              <label>Copy Webpack Plugin</label>
             </div>
           </div>
           <div id="linting">

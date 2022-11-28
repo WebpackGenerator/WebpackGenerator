@@ -4,6 +4,8 @@ const initialState = {
   template: {
     miniCssExtractPlugin: false,
     htmlWebpackPlugin: false,
+    htmlpluginTitle: 'Development',
+    htmlpluginTemplate: 'index.html',
     prettier: false,
     eslint: false,
     entry: './src/index.js',
@@ -12,8 +14,13 @@ const initialState = {
     react: false,
     css: '',
     typescript: false,
-    proxy: false,
+    devServer: false,
     proxyPort: 8080,
+    static: false,
+    proxy_filepath: '/',
+    proxy_target: '3000',
+    static_folder: 'build',
+    static_path: './build',
   },
 };
 
