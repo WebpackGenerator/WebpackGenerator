@@ -21,6 +21,7 @@ userController.createUser = async (req, res, next) => {
     console.log(e);
     next({err: "Please enter a valid email and password"});
   }
+  //return next();
 };
 
 
