@@ -9,10 +9,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
-<<<<<<< HEAD
-function WebpackCode() {
-  const template = useSelector((state) => state.webpack.template);
-=======
 // actions
 import {saveWebpackCodeActionCreator} from '../actions/actions';
 
@@ -48,7 +44,6 @@ function WebpackCode() {
   // },)
 
   // console.log('TEMPLATE', template);
->>>>>>> dev
 
   let boilerplate = `\
 const path = require('path');
