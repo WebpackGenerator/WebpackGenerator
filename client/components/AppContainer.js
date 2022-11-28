@@ -31,12 +31,14 @@ function AppContainer() {
       <div className="navBar">
         <NavBar loginClick={loginClick} registerClick={registerClick} />
       </div>
-      <div className="questionContainer">
-        <FormInput />
-      </div>
-      <div className="codeContainer">
-        <WebpackCode />
-        <NodeCode />
+      <div className="content">
+        <div className="questionContainer">
+          <FormInput />
+        </div>
+        <div className="codeContainer">
+          <WebpackCode />
+          <NodeCode />
+        </div>
       </div>
     </div>
   );

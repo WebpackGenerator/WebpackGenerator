@@ -12,8 +12,8 @@ body {
   height: 100%;
 }
 
-/* questions */
-#questionnaire {
+/* form input */
+.formContainer {
   width: 60%;
   height: 100%;
   background-color: rgb(160, 132, 199); 
@@ -91,14 +91,28 @@ body {
 .webpackCode {
   height: calc(75% - 4vw);
   padding: 2vw;
+  position: relative;
 }
 .nodeCode {
   height: calc(25% - 4vw);
   padding: 2vw;
+  position: relative;
 }
+
 .cm-editor {
   padding: 1vw;
+  overflow: auto;
+  overflow-wrap: break-word;
 }
 .cm-focused {
   outline: none !important;
+}
+
+.nodeCode button{
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  top: 2vw;
+  right: 2vw;
 }
