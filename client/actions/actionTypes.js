@@ -1,1 +1,2 @@
 export const UPDATE_FORM = 'UPDATE_FORM';
+export const PUT_WEBPACK_IN_STATE = 'PUT_WEBPACK_IN_STATE';

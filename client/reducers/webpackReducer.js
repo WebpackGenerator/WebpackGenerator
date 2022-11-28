@@ -11,7 +11,9 @@ const initialState = {
     typescript: false,
     proxy: false,
     proxyPort: 8080
-  }
+  },
+  projectName: 'MyProject',
+  webpack: 'boilerplate webpack stuff!'
 };
 
 const webpackReducer = (state = initialState, action) => {
@@ -30,6 +32,12 @@ const webpackReducer = (state = initialState, action) => {
       return {
         ...state,
         template: template
+      };
+
+    case types.PUT_WEBPACK_IN_STATE:
+      return {
+        ...state,
+        webpack: action.payload
       };
  
     default: {

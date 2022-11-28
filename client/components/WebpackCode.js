@@ -9,6 +9,9 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
+// actions
+import {saveWebpackCodeActionCreator} from '../actions/actions';
+
 // import components here
 
 // const mapStateToProps = state => {
@@ -16,15 +19,24 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 //   return state.webpack.template
 // };
 
+
+// IN WebpackCode add:
+// add   const dispatch = useDispatch()
+// use   dispatch(actions.saveWebpackCodeActionCreator(webpackString))
+// do this to save webpack code content in state which we'll pull from here
+
+
 function WebpackCode() {
 
   const template = useSelector(state => state.webpack.template);
   
-  // useEffect(() => {
-  //   console.log("TEST TEST TEST TEST TEST");
-  //   console.log('change: ', template);
-  //   //dispatch({ type: 'A', payload: a });
-  // }, [template]) 
+  const dispatch = useDispatch();
+
+  // on change of the template, save the state content
+  useEffect(() => {
+    // SAVE CODE TO STATE
+    dispatch(saveWebpackCodeActionCreator(boilerplate))
+  }, [template]) 
 
   // update everything when state changes
   // useEffect(()=> {
@@ -32,7 +44,6 @@ function WebpackCode() {
   // },)
 
   // console.log('TEMPLATE', template);
-
 
   let boilerplate = `\
 const path = require('path');
@@ -112,6 +123,7 @@ module.exports = {
   // const onChange = React.useCallback((value, viewUpdate) => {
   //   console.log('value:', value);
   // }, []);
+
 
   return (
     <div className="webpackCode">
