@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 //import files
-import RegistrationForm from "./RegistrationForm.js";
-import NavBar from "./NavBar.js";
-import AppContainer from "./AppContainer.js";
+import RegistrationForm from './RegistrationForm.js';
+import NavBar from './NavBar.js';
+import AppContainer from './AppContainer.js';
 
 // import App from "./App,js";
 
 const LoginForm = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const updateUsername = (event) => {
     setUsername(event.target.value);
@@ -23,9 +23,9 @@ const LoginForm = (props) => {
       username,
       password,
     };
-    fetch("/login", {
-      method: "POST",
-      headers: { "Content-Type": "Application/JSON" },
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify(data),
     }).then((result) => {
       if (result.status === 200) {
@@ -35,7 +35,7 @@ const LoginForm = (props) => {
   };
   return (
     <div className={`loginSignup ${props.show ? "active" : ""} show`}>
-    <div class='closeSignup' onClick={props.closeSignup}>X</div>
+    <div className='closeSignup' onClick={props.closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
           <label>Login:</label>
@@ -60,7 +60,7 @@ const LoginForm = (props) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
-      <div class='switchView' onClick={props.swapView}>SIGN UP</div>
+      <div className='switchView' onClick={props.swapView}>SIGN UP</div>
     </div>
   );
 };
