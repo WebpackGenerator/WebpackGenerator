@@ -2,10 +2,15 @@
 import * as types from './actionTypes';
 
 export const updateOptionsActionCreator = options => {
-  console.log('action made', options);
   return ({
     type: types.UPDATE_FORM,
     payload: options,
   })
 };
 
+export const saveWebpackCodeActionCreator = webpackString => {
+  return ({
+    type: types.PUT_WEBPACK_IN_STATE,
+    payload: webpackString,
+  })
+};

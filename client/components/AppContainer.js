@@ -6,6 +6,7 @@ import WebpackCode from './WebpackCode.js';
 import NodeCode from './NodeCode.js';
 import NavBar from './NavBar.js';
 import FormInput from './FormInput.js';
+import Download from './Download.js';
 
 function AppContainer() {
   const [showLogin, setLoginVisual] = useState(true);
@@ -34,6 +35,7 @@ function AppContainer() {
       <main>
         <div className="questionContainer">
           <FormInput />
+          <Download />
         </div>
         <div className="codeContainer">  
           <WebpackCode />
