@@ -4,23 +4,22 @@ const userController = {};
 
 
 userController.createUser = async (req, res, next) => {
+  console.log(req.body);
   const { email, password } = req.body 
   console.log(email, password)
   try {
     const user = await Users.create({
-        email: email,
-        password: password,
+        email: email.toString(),
+        password: password.toString(),
     })
-    if (user === null) {
-      console.log('userController.createUser caught error while creating new user');
-    }
     res.locals.user = user;
     console.log('user', user)
     return next();
   }
   catch(e) {
+    console.log('userController.createUser: caught error');
     console.log(e);
-    res.send('not working');
+    next({err: "Please enter a valid email and password"});
   }
   //return next();
 };
@@ -33,8 +32,9 @@ userController.verifyUser = (req, res, next) => {
     email: email,
     password: password
   }, (err, user) => {
-    if (err) console.log(err);
-    else if (user === null) res.redirect('/register')
+    if (user === null) {
+      return next({err: "Wrong email or password"})
+    }
     else {
       console.log(user)
       res.locals.user = user;

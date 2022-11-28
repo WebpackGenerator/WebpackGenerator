@@ -10,7 +10,7 @@ mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // sets the name of the DB that our collections are part of
-  dbName: 'wpms'
+  dbName: 'wpmsdb'
 })
   .then(() => console.log('Connected to Mongo DB.'))
   .catch(err => console.log(err));
@@ -19,7 +19,6 @@ const Schema = mongoose.Schema;
 
 // sets a schema for the 'users' collection
 const userSchema = new Schema({
-  // username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   template: { type: mongoose.SchemaTypes.Mixed, required: false }
