@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 
 //import files here
 // import App from "./App,js";
+import NavBar from "./NavBar";
+import AppContainer from "./AppContainer.js";
 
-const Registration = () => {
+const Registration = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [registrationSuccess, setRegistrationSuccess] = useState(null);
+  // const [registrationSuccess, setRegistrationSuccess] = useState(null);
 
   const updateEmail = (event) => {
     setEmail(event.target.value);
@@ -18,9 +20,9 @@ const Registration = () => {
   const passwordConfirmation = (event) => {
     setConfirmPassword(event.target.value);
   };
-  const registered = (event) => {
-    setRegistrationSuccess(event.target.value);
-  };
+  // const registered = (event) => {
+  //   setRegistrationSuccess(event.target.value);
+  // };
   const submitUser = (event) => {
     event.preventDefault();
     if (email && password && confirmPassword && password === confirmPassword) {
@@ -34,6 +36,7 @@ const Registration = () => {
         body: JSON.stringify(data),
       }).then((result) => {
         if (result.status === 200) {
+          console.log(result);
           // registered("Registration successfull");
           //redirect to the home page
           // redirectHome();
@@ -43,53 +46,44 @@ const Registration = () => {
       });
     }
   };
-  // const redirectHome = () => {
-  //   //create & import home page
-  //   return <App />;
-  // };
+
   return (
-    <div className="registrationForm" onSubmit={(e) => submitUser(e)}>
-      <form>
-        <div>
+    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
+    <div class='closeSignup' onClick={props.closeSignup}>X</div>
+      <form className="registrationForm" onSubmit={(e) => submitUser(e)}>
+        <div className="registrationInputs">
           <label>Email Address:</label>
           <input
-            type="email"
+            type="text"
             placeholder="Enter Email"
             value={email}
             onChange={(e) => updateEmail(e)}
           ></input>
-        </div>
-        <div>
+          <br></br>
           <label>Password:</label>
+          <br></br>
           <input
-            type="password"
+            type="text"
             placeholder="Enter Password"
             value={password}
             onChange={(e) => updatePassword(e)}
           ></input>
-        </div>
-        <div>
+          <br></br>
           <label>Confirm Password:</label>
+          <br></br>
           <input
-            type="password"
+            type="text"
             placeholder="Enter Password"
             value={confirmPassword}
             onChange={(e) => passwordConfirmation(e)}
           ></input>
+          <br></br>
         </div>
         <div className="submitRegistration">
-          <input type="submit" value="Submit">
-            Register
-          </input>
-        </div>
-        <div
-          className="loginMessage"
-          style={{ display: loginMessage ? "block" : "none" }}
-          role="alert"
-        >
-          {registrationSuccess}
+          <input type="submit" value="Submit"></input>
         </div>
       </form>
+      <div class='switchView' onClick={props.swapView}>LOG IN</div>
     </div>
   );
 };

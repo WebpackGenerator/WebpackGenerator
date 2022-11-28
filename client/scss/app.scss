@@ -2,19 +2,25 @@ body {
   margin: 0;
 }
 
+/* containers */
 .appContainer {
   width: 100%;
   height: 100%;
-  background-color: beige;
+}
+.content {
   display: flex;
+  height: 100%;
 }
 
-.questionContainer {
+/* questions */
+#questionnaire {
   width: 60%;
   height: 100%;
   background-color: rgb(160, 132, 199); 
+  align-items: stretch;
 }
 
+/* code */
 .codeContainer {
   width: 40%;
   height: 100%;
@@ -36,6 +42,49 @@ body {
   height: calc(100% - 4vw);
   resize: none;
   border: 0;
+}
+
+/* nav */
+.navBar {
+  width: 100%;
+  height: 40px;
+  background-color: aquamarine;
+}
+
+/* login and signup */
+.dontShow {
+  display: none !important;
+}
+#lrModal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loginSignup {
+  position: fixed;
+  z-index: 200;
+  transform: translateY(-20%);
+  width: 300px;
+  height: 400px;
+}
+.loginSignup {
+  background-color: rgb(205, 205, 221);
+  padding: 3vw;
+}
+.show{
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+}
+.show.active{
+  // transform: translateY(100px) scale(0) rotateY(180deg);
+  //opacity: 0;
+  display: none;
 }
 
 /* code mirrors */
