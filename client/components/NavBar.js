@@ -28,7 +28,7 @@ const NavBar = ({ loginClick, registerClick }) => {
   return (
     <div className="navBar">
       <LoginSignup show={showLoginModal} hideSignup={hideSignup} />
-      <div>
+      <div class='navBarBg'>
         <span>
           <button className="navBarLogin" onClick={showSignup}>
             <label>Sign In</label>

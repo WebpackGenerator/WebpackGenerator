@@ -24,8 +24,8 @@ function LoginSignup(props) {
   return (
     <div id="lrModal" className={display}>
       <div id='loginSignup'>
-        <LoginForm show={showLogin} swapView={swapLoginView} closeSignup={props.hideSignup}/>
-        <Registration show={!showLogin} swapView={swapLoginView} closeSignup={props.hideSignup} />
+        <LoginForm show={!showLogin} swapView={swapLoginView} closeSignup={props.hideSignup}/>
+        <Registration show={showLogin} swapView={swapLoginView} closeSignup={props.hideSignup} />
       </div>
     </div>
   );

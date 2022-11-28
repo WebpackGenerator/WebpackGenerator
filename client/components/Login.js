@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 //import files
-import RegistrationForm from './RegistrationForm.js';
-import NavBar from './NavBar.js';
-import AppContainer from './AppContainer.js';
+import OAuthButton from './OAuthButton';
 
-// import App from "./App,js";
+
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState('');
@@ -20,7 +18,7 @@ const LoginForm = (props) => {
   const submitLogin = (event) => {
     event.preventDefault();
     const data = {
-      username,
+      email: username,
       password,
     };
     fetch('/login', {
@@ -30,6 +28,9 @@ const LoginForm = (props) => {
     }).then((result) => {
       if (result.status === 200) {
         console.log(result);
+      }
+      else {
+        console.log('ERROR:', result);
       }
     });
   };
@@ -60,6 +61,9 @@ const LoginForm = (props) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
+
+      <OAuthButton content="Login with Google" />
+      
       <div className='switchView' onClick={props.swapView}>SIGN UP</div>
     </div>
   );
