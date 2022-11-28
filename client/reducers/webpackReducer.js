@@ -2,7 +2,10 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   template: {
+    miniCssExtractPlugin: false,
     htmlWebpackPlugin: false,
+    prettier: false,
+    eslint: false,
     entry: './src/index.js',
     output_filename: 'bundle.js',
     output_folder: 'dist',
@@ -10,16 +13,15 @@ const initialState = {
     css: '',
     typescript: false,
     proxy: false,
-    proxyPort: 8080
-  }
+    proxyPort: 8080,
+  },
 };
 
 const webpackReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.UPDATE_FORM:
-
       // copy existing template
-      const template = {...state.template};
+      const template = { ...state.template };
 
       // update with new value
       for (const k in action.payload) {
@@ -29,9 +31,9 @@ const webpackReducer = (state = initialState, action) => {
       // return updated state
       return {
         ...state,
-        template: template
+        template: template,
       };
- 
+
     default: {
       return state;
     }

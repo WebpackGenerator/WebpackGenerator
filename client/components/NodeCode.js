@@ -1,5 +1,6 @@
 // import hooks and react
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 // codemirror
 import CodeMirror from '@uiw/react-codemirror';
@@ -10,15 +11,11 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
 function NodeCode() {
   const [copyItem, copySuccess] = useState(false);
-  //framework dowloands
-  // let express = true;
-  // let react = false;
-  // let react_dom = false;
-  // let redux = false;
+  const template = useSelector((state) => state.webpack.template);
 
   //declare variables for optional dependancy installation
-  let webpack = true;
-  let babel = true;
+  let webpack = false;
+  let babel = false;
   let typescript = false;
   let style_loader = false;
   let css = false;
@@ -33,15 +30,15 @@ function NodeCode() {
   //plugins
 
   let boilerplate = `\
-  npm i -D webpack ${webpack ? `webpack-cli webpack-dev-server` : ``} ${
-    babel ? `babel-loader @babel/core @babel/preset-env` : ``
-  } ${typescript ? `typescript ts-loader` : ``} ${
-    css ? `css-loader style-loader` : ``
-  } ${sass ? `css-loader sass-loader node-sass style-loader` : ``} ${
-    eslint ? `eslint` : ``
-  } ${prettier ? `prettier` : ``} ${
-    htmlWebpackPlugin ? `html-webpack-plugin` : ``
-  } ${miniCssExtractPlugin ? `mini-css-extract-plugin` : ``}`;
+  npm i -D webpack ${
+    template.webpack ? `webpack-cli webpack-dev-server` : ``
+  } ${template.react ? `babel-loader @babel/core @babel/preset-env` : ``} ${
+    template.typescript ? `typescript ts-loader` : ``
+  } ${template.css ? `css-loader style-loader` : ``} ${
+    template.sass ? `css-loader sass-loader node-sass style-loader` : ``
+  } ${template.eslint ? `eslint` : ``} ${template.prettier ? `prettier` : ``} ${
+    template.htmlWebpackPlugin ? `html-webpack-plugin` : ``
+  } ${template.miniCssExtractPlugin ? `mini-css-extract-plugin` : ``}`;
 
   // we will do our initial server calls here
   useEffect(() => {}, []);
@@ -54,7 +51,6 @@ function NodeCode() {
         width="100%"
         theme={okaidia}
         extensions={[javascript({ jsx: true })]}
-        //onChange={onChange}
         readOnly="nocursor"
         basicSetup={{
           lineWrapping: true,
