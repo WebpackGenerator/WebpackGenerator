@@ -1,20 +1,52 @@
 body {
   margin: 0;
+  background-color: rgb(244, 232, 248);
+  font-family: 'Courier New', Courier, monospace;
 }
 
+/* containers */
 .appContainer {
   width: 100%;
   height: 100%;
-  background-color: beige;
-  display: flex;
 }
 
-.questionContainer {
+
+main {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.formContainer {
+  padding: 1rem;
+  background-color: rgb(198, 156, 212);
+}
+
+.formContainer, 
+#outputField,
+#loadersField {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+/* questions */
+#questionnaire {
   width: 60%;
   height: 100%;
   background-color: rgb(160, 132, 199); 
+  align-items: stretch;
 }
 
+/* code */
 .codeContainer {
   width: 40%;
   height: 100%;
@@ -38,10 +70,67 @@ body {
   border: 0;
 }
 
+/* nav */
+.navBar {
+  // width: 100%;
+  display: inline;
+  height: 3rem;
+  // background-color: rgb(120, 231, 194);
+  background-color: rgb(244, 232, 248);
+
+}
+
+/* login and signup */
+.dontShow {
+  display: none !important;
+}
+#lrModal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loginSignup {
+  position: fixed;
+  z-index: 200;
+  transform: translateY(-20%);
+  width: 300px;
+  height: 400px;
+}
+
+.navBarLogin {
+  padding: .6rem;
+  background-color: rgb(198, 156, 212);
+  border: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.loginSignup {
+  background-color: rgb(226, 206, 232);
+  padding: 3vw;
+}
+.show{
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+}
+.show.active{
+  // transform: translateY(100px) scale(0) rotateY(180deg);
+  //opacity: 0;
+  display: none;
+}
+
 /* code mirrors */
 .webpackCode {
   height: calc(75% - 4vw);
   padding: 2vw;
+  padding-bottom: 0;
 }
 .nodeCode {
   height: calc(25% - 4vw);
