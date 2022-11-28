@@ -51,13 +51,11 @@ ${
   template.htmlWebpackPlugin
     ? `const HtmlWebpackPlugin = require('html-webpack-plugin');\n`
     : ``
-}
-${
+}${
   template.miniCssExtractPlugin
     ? `const MiniCssExtractPlugin = require('mini-css-extract-plugin');\n`
     : ``
-}
-${
+}${
   template.copyWebpackPlugin
     ? `const CopyPlugin = require('copy-webpack-plugin');\n`
     : ``
@@ -104,25 +102,15 @@ module.exports = {
   }${
     template.htmlWebpackPlugin || template.miniCssExtractPlugin
       ? `
-  plugins:[
-    ${
-      template.htmlWebpackPlugin
-        ? `    
+  plugins: [ ${template.htmlWebpackPlugin ? `    
     new HtmlWebpackPlugin({
       title: '${template.htmlpluginTitle}',
       template: '${template.htmlpluginTemplate}'
-    }),`
-        : ``
+    }),`: ``}${
+      template.miniCssExtractPlugin? `
+    new MiniCssExtractPlugin()`: ``
     }
-    ${
-      template.miniCssExtractPlugin
-        ? `
-    newMiniCssExtractPlugin()`
-        : ``
-    }
-  ]
-  `
-      : ``
+  ]`: ``
   }${
     template.devServer
       ? `
