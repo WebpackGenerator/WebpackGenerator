@@ -1,71 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-const FormInput = () => {
-  // const [entry, setEntry] = useState('');
-  // const [path, setPath] = useState('');
-  // const [filename, setFileName] = useState('');
-  // const [isEs6Active, setIsEs6Active] = useState(false);
-  // const [isReactActive, setIsReactActive] = useState(false);
-  // const [noStyle, setNoStyle] = useState(false);
-  // const [css, setCss] = useState(false);
-  // const [sass, setSass] = useState(false);
-  // const [htmlplugin, sethtmlplugin] = useState(false);
-  // const [minicssplugin, setminicssplugin] = useState(false);
-  // const [copywebpackplugin, setcopywebpackplugin] = useState(false);
+import {updateOptionsActionCreator} from '../actions/actions';
 
-  // const handleSetEntry = (event) => {
-  //   setEntry(event.target.value);
-  // };
-  // const handleSetPath = (event) => {
-  //   setPath(event.target.value);
-  // };
-  // const handleSetFileName = (event) => {
-  //   setFileName(event.target.value);
-  // };
-  // const handleSetIsEs6Active = () => {
-  //   setIsEs6Active(!isEs6Avtive);
-  // };
-  // const handleSetIsReactActive = () => {
-  //   setIsReactActive(!isReactActive);
-  // };
-  // const handleSetNoStyle = () => {
-  //   setNoStyle(!noStyle);
-  // };
-  // const handleSetCss = () => {
-  //   setCss(!css);
-  // };
-  // const handleSetESass = () => {
-  //   setSass(!sass);
-  // };
-  // const handlesethtmlplugin = () => {
-  //   sethtmlplugin(!htmlplugin);
-  // };
-  // const handleminicsspluginn = () => {
-  //   setminicssplugin(!minicssplugin);
-  // };
-  // const handlecopywebpackplugin = () => {
-  //   setcopywebpackplugin(!copywebpackplugin);
-  // };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateOptions: (options) => dispatch(updateOptionsActionCreator(options))
+  };
+}
+
+const FormInput = (props) => {
 
   const formChange = (e) => {
     //for (let i = 0; i < e.target)
     const change = {}
-    change[e.target.name] = e.target.value;
-    console.log('update', change);
 
-    /*
-    htmlWebpackPlugin,
-    entry,
-    output_filename,
-    output_folder,
-    react,
-    css,
-    scss,
-    typescript,
-    proxy,
-    proxyPort
-    */
+    console.log('UPDATING', e.target.id, " TO:", e.target.value, 'TYPE:', e.target.type);
+
+    let value = e.target.value;
+    if (e.target.type === 'checkbox') value = e.target.checked;
+
+    change[e.target.id] = value;
+
+    props.updateOptions(change);
   }
+
+
 
   return (
     <div className="formContainer">
@@ -74,10 +34,11 @@ const FormInput = () => {
           <label>Entry file:</label>
           <input
             type="text"
-            value='./src/index.js'
+            defaultValue='./src/index.js'
             placeholder="./src/index.js"
             name='entry'
-            // onChange={(e) => handleSetEntry(e)}
+            id='entry'
+            // onChange={formChange}
           ></input>
         </div>
         <div id="outputField">
@@ -85,9 +46,10 @@ const FormInput = () => {
             <label>Path:</label>
             <input
               type="text"
-              value='dist'
+              defaultValue='dist'
               placeholder="dist"
               name="output_folder"
+              id='output_folder'
               // onChange={(e) => handleSetPath(e)}
             ></input>
           </div>
@@ -95,16 +57,17 @@ const FormInput = () => {
             <label>Filename:</label>
             <input
               type="text"
-              value="index.js"
+              defaultValue="index.js"
               placeholder="index.js"
               name="output_filename"
+              id='output_filename'
               // onChange={(e) => handleSetFileName(e)}
             ></input>
           </div>
         </div>
         <div id="loadersField">
           <div id="react-select" name="type">
-            <input type="checkbox" value='false' name='react'></input>
+            <input type="checkbox" value='false' name='react' id='react'></input>
             <label>React</label>
           </div>
           {/* <div id="es6-select" name="type">
@@ -118,10 +81,13 @@ const FormInput = () => {
           <div id="style-select" name="type">
             <label>Styling</label>
             <br></br>
-            <input type="radio" id="css" name="css" value='false'></input>
+            <input type="radio" id="css" name="css" value=''></input>
+            <label>none</label>
+            <br></br>
+            <input type="radio" id="css" name="css" value='css'></input>
             <label>CSS</label>
             <br></br>
-            <input type="radio" id="sass" name="scss" value='false'></input>
+            <input type="radio" id="css" name="css" value='sass'></input>
             <label>SASS</label>
             <br></br>
           </div>
@@ -129,18 +95,15 @@ const FormInput = () => {
             <label>Plugins</label>
             <br></br>
             <div id="htmlplugin" name="type">
-              <input type="checkbox" value='false'></input>
+              <input type="checkbox" value='false' id='htmlWebpackPlugin'></input>
               <label>Html Plugin</label>
             </div>
             <div id="minicssplugin" name="type">
-              <input type="checkbox" value='false'></input>
+              <input type="checkbox" value='false' id='minicssplugin'></input>
               <label>Mini CSS Plugin</label>
             </div>
-            <div
-              id="Copy WebPack Plugin"
-              name="type"
-            >
-              <input type="checkbox" value='false'></input>
+            <div id="Copy WebPack Plugin" name="type">
+              <input type="checkbox" value='false' id='minicssplugin'></input>
               <label>Copy Webpack Plugin</label>
             </div>
           </div>
@@ -150,4 +113,4 @@ const FormInput = () => {
   );
 };
 
-export default FormInput;
+export default connect(null, mapDispatchToProps)(FormInput);
