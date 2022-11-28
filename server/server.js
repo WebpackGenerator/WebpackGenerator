@@ -38,8 +38,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.send('<a href="/auth/google"> Authenticate with Google  </a>');
+    console.log("hi");
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
+
+// app.get('/', (req, res) => {
+//   res.send('<a href="/auth/google"> Authenticate with Google </a>');
+// });
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
@@ -52,11 +57,9 @@ app.get( '/auth/google/callback',
   })
 );
 
-// app.get('/', isLoggedIn, (req, res) => {
-
-//   res.send({username: req.user.displayName, success:true}).status(200);
-// });
-
+app.get('/protected', isLoggedIn, (req, res) => {
+  res.send({username: req.user.displayName, success:true}).status(200);
+});
   
     
 // app.get('/logout', (req, res) => {
@@ -68,10 +71,6 @@ app.get( '/auth/google/callback',
 
 
 // send static stuff
-// app.get('/', (req, res) => {
-  //   console.log(__dirname);
-  //   res.sendFile(path.join(__dirname, '../index.html'));
-// });
 
 // app.use(sessionController.getSessionId);
 // passport.use(Users.createStrategy());

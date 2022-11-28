@@ -35,7 +35,6 @@ function AppContainer() {
       <main>
         <div className="questionContainer">
           <FormInput />
-          <Download />
         </div>
         <div className="codeContainer">  
           <WebpackCode />
