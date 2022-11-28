@@ -60,7 +60,6 @@ app.use(sessionController.getSessionId);
 
 
 app.post('/register', authController.validate, userController.createUser, (req, res) => {
-  
   return res.status(200).json(res.locals.user);
 });
 
@@ -79,9 +78,17 @@ app.post('/login', authController.validate, userController.verifyUser, (req, res
 });
 
 
-// catchall
+app.use('*', (req,res) => {
+  res.status(404).send('Not Found');
+});
 
-// global errors 
+/**
+ * Global error handler
+ */
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send({ error: err });
+});
 
 
 app.listen(PORT, () => console.log(`This app is listening on port ${PORT}`));
