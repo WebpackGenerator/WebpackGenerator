@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //import files here
-// import App from "./App,js";
-import NavBar from "./NavBar";
-import AppContainer from "./AppContainer.js";
+import OAuthButton from './OAuthButton';
 
 const Registration = (props) => {
   const [email, setEmail] = useState("");
@@ -83,6 +81,10 @@ const Registration = (props) => {
           <input type="submit" value="Submit"></input>
         </div>
       </form>
+
+      <OAuthButton content="Sign in sith Google" />
+
+
       <div className='switchView' onClick={props.swapView}>LOG IN</div>
     </div>
   );
