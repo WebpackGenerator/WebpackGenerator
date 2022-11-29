@@ -4,6 +4,16 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:rgb(166, 83, 193);
+  font-weight: 800;
+  font-size: 30px;
+  margin-top: 0;
+}
+
 /* containers */
 .appContainer {
   width: 100%;

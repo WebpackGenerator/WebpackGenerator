@@ -18,7 +18,7 @@ userController.createUser = async (req, res, next) => {
   }
   catch(e) {
     console.log('userController.createUser: caught error');
-    console.log(e);
+    console.log("this is the error", e);
     next({err: "Please enter a valid email and password"});
   }
   //return next();
