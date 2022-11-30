@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 //import files here
 import OAuthButton from './OAuthButton';
 
-const RegistrationForm = (props) => {
+const RegistrationForm = ({ logInUser, swapView, closeSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [registrationSuccess, setRegistrationSuccess] = useState(null);
 
   const updateEmail = (event) => {
     setEmail(event.target.value);
@@ -18,9 +17,7 @@ const RegistrationForm = (props) => {
   const passwordConfirmation = (event) => {
     setConfirmPassword(event.target.value);
   };
-  // const registered = (event) => {
-  //   setRegistrationSuccess(event.target.value);
-  // };
+
   const submitUser = (event) => {
     event.preventDefault();
     if (email && password && confirmPassword && password === confirmPassword) {
@@ -32,22 +29,20 @@ const RegistrationForm = (props) => {
         method: "POST",
         headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(data),
-      }).then((result) => {
-        if (result.status === 200) {
-          console.log(result);
-          // registered("Registration successfull");
-          //redirect to the home page
-          // redirectHome();
-        } else {
-          // showError("There was an error");
+      })
+      .then(res => res.json())
+      .then((result) => {
+        console.log("email: ", result);
+        if (result) {
+          logInUser();
         }
       });
     }
   };
 
   return (
-    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
-    <div className='closeSignup' onClick={props.closeSignup}>X</div>
+    <div className={`loginSignup`}>
+    <div className='closeSignup' onClick={closeSignup}>X</div>
       <form className="registrationForm" onSubmit={(e) => submitUser(e)}>
         <div className="registrationInputs">
           <label>Email Address:</label>
@@ -82,9 +77,9 @@ const RegistrationForm = (props) => {
         </div>
       </form>
 
-      <OAuthButton content="Sign up with Google" />
+      <OAuthButton />
 
-      <div className='switchView' onClick={props.swapView}>LOG IN</div>
+      <div className='switchView' onClick={swapView}>LOG IN</div>
     </div>
   );
 };

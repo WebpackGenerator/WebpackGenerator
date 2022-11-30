@@ -1,5 +1,5 @@
 {
-  "name": "webpack-my-stack",
+  "name": "webpackGenerator",
   "version": "1.0.0",
   "description": "",
   "main": "./client/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LipFish/Webpack-My-Stack.git"
+    "url": "git+https://github.com/WebpackGenerator/WebpackGenerator"
   },
   "author": "LipFish",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LipFish/Webpack-My-Stack/issues"
+    "url": "https://github.com/WebpackGenerator/WebpackGenerator/issues"
   },
-  "homepage": "https://github.com/LipFish/Webpack-My-Stack#readme",
+  "homepage": "https://github.com/WebpackGenerator/WebpackGenerator#readme",
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.1",
     "@uiw/codemirror-theme-okaidia": "^4.15.1",

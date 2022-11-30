@@ -5,7 +5,7 @@ import OAuthButton from './OAuthButton';
 
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ logInUser, swapView, closeSignup }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,18 +30,21 @@ const LoginForm = (props) => {
     })
     .then(res => res.json())
     .then((result) => {
-      console.log('FRONT END:', result);
+      console.log('email form login:', result);
+      if (result) {
+        logInUser();
+      }
     });
   };
   return (
-    <div className={`loginSignup ${props.showLogin ? "active" : ""} show`}>
-    <div className='closeSignup' onClick={props.closeSignup}>X</div>
+    <div className={`loginSignup`}>
+    <div className='closeSignup' onClick={closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
-          <label>Login:</label>
+          <label>Email:</label>      
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             value={username}
             onChange={(e) => updateUsername(e)}
           ></input>
@@ -63,7 +66,7 @@ const LoginForm = (props) => {
 
       <OAuthButton content="Login with Google" />
       
-      <div className='switchView' onClick={props.swapView}>SIGN UP</div>
+      <div className='switchView' onClick={swapView}>SIGN UP</div>
     </div>
   );
 };

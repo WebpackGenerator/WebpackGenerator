@@ -153,11 +153,7 @@ main {
   transition: 800ms;
   opacity: 1;
 }
-.show.active{
-  // transform: translateY(100px) scale(0) rotateY(180deg);
-  //opacity: 0;
-  display: none;
-}
+
 
 /* code mirrors */
 .webpackCode {

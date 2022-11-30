@@ -7,7 +7,7 @@ import AppContainer from "./AppContainer.js";
 import LoginSignup from "./LoginSignup.js";
 
 // passing loginClick and registerClick and destructuring it from props object
-const NavBar = ({ loginClick, registerClick }) => {
+const NavBar = ({ logInUser, loginClick, registerClick }) => {
 
   // this state tracks whether to show or hide the sign up/login pop up box.
   const [showPopUp, setShowPopUp] = useState(false);
@@ -19,8 +19,8 @@ const NavBar = ({ loginClick, registerClick }) => {
 
   return (
     <div className="navBar">
-      {showPopUp && <LoginSignup togglePopUp={togglePopUp} />}
-      <div class='navBarBg'>
+      {showPopUp && <LoginSignup logInUser={logInUser} togglePopUp={togglePopUp} />}
+      <div className='navBarBg'>
         <span>
           <button className="navBarLogin" onClick={togglePopUp}>
             <label>Sign In</label>

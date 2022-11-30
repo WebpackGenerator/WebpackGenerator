@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 
-
 const CopyButton = (props) => {
 
   const [copyItem, isCopied] = useState(false);

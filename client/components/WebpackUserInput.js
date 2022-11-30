@@ -17,17 +17,7 @@ const FormInput = (props) => {
   const template = useSelector(state => state.webpack.template);
 
   const formChange = (e) => {
-    //for (let i = 0; i < e.target)
     const change = {};
-
-    console.log(
-      'UPDATING',
-      e.target.id,
-      ' TO:',
-      e.target.value,
-      'TYPE:',
-      e.target.type
-    );
 
     let value = e.target.value;
     if (e.target.type === 'checkbox') value = e.target.checked;
@@ -62,7 +52,6 @@ const FormInput = (props) => {
               placeholder="dist"
               name="output_folder"
               id="output_folder"
-              // onChange={(e) => handleSetPath(e)}
             ></input>
           </div>
           <div id="filenameField">
@@ -73,7 +62,6 @@ const FormInput = (props) => {
               placeholder="index.js"
               name="output_filename"
               id="output_filename"
-              // onChange={(e) => handleSetFileName(e)}
             ></input>
           </div>
         </div>
@@ -100,7 +88,7 @@ const FormInput = (props) => {
             </div>
 
             {/* dev server configs */}
-            <div class={'indentedOptions ' + (template.devServer ? '' : 'dontShow')}>
+            <div className={'indentedOptions ' + (template.devServer ? '' : 'dontShow')}>
               <div id="port" name="type">
                 <label>Port:</label>
                 <input
@@ -167,7 +155,7 @@ const FormInput = (props) => {
               <label>Html Plugin</label>
               <br></br>
               
-              <div class={'indentedOptions ' + (template.htmlWebpackPlugin ? '' : 'dontShow')}>
+              <div className={'indentedOptions ' + (template.htmlWebpackPlugin ? '' : 'dontShow')}>
                 <label>Title:</label>
                 <input
                   type="text"
