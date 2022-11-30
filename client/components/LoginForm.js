@@ -12,9 +12,11 @@ const LoginForm = (props) => {
   const updateUsername = (event) => {
     setUsername(event.target.value);
   };
+
   const updatePassword = (event) => {
     setPassword(event.target.value);
   };
+
   const submitLogin = (event) => {
     event.preventDefault();
     const data = {
@@ -25,17 +27,14 @@ const LoginForm = (props) => {
       method: 'POST',
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify(data),
-    }).then((result) => {
-      if (result.status === 200) {
-        console.log(result);
-      }
-      else {
-        console.log('ERROR:', result);
-      }
+    })
+    .then(res => res.json())
+    .then((result) => {
+      console.log('FRONT END:', result);
     });
   };
   return (
-    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
+    <div className={`loginSignup ${props.showLogin ? "active" : ""} show`}>
     <div className='closeSignup' onClick={props.closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
@@ -46,9 +45,9 @@ const LoginForm = (props) => {
             value={username}
             onChange={(e) => updateUsername(e)}
           ></input>
-          <br></br>
+          <br/>
           <label>Password:</label>
-          <br></br>
+          <br/>
           <input
             type="text"
             placeholder="Password"

@@ -3,7 +3,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { updateOptionsActionCreator } from '../actions/actions';
 
-// comonents
+// components
 import Download from './Download';
 
 const mapDispatchToProps = (dispatch) => {

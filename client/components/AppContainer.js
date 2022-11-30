@@ -8,7 +8,7 @@ import NavBar from './NavBar.js';
 import FormInput from './FormInput.js';
 import Download from './Download.js';
 
-function AppContainer() {
+const AppContainer = () => {
   const [showLogin, setLoginVisual] = useState(true);
   const [showRegister, setRegisterVisual] = useState(true);
 
@@ -17,16 +17,17 @@ function AppContainer() {
 
   // this will contain all the logic for our components
 
-  //handle login click
+  // handle login click
   const loginClick = (e) => {
     setLoginVisual((showLogin) => !showLogin);
     setRegisterVisual((showRegister) => !showRegister);
   };
-  //handle register click
+  // handle register click
   const registerClick = (e) => {
     setRegisterVisual((showRegister) => !showRegister);
     setLoginVistual((showLogin) => !showLogin);
   };
+
   return (
     <div className="appContainer">
       <div className="navBar">

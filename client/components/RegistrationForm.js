@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 //import files here
 import OAuthButton from './OAuthButton';
 
-const Registration = (props) => {
+const RegistrationForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -82,12 +82,11 @@ const Registration = (props) => {
         </div>
       </form>
 
-      <OAuthButton content="Sign in sith Google" />
-
+      <OAuthButton content="Sign up with Google" />
 
       <div className='switchView' onClick={props.swapView}>LOG IN</div>
     </div>
   );
 };
 
-export default Registration;
+export default RegistrationForm;

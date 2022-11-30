@@ -1,43 +1,34 @@
 import React, { useEffect, useState } from "react";
 
 //import files
-import LoginForm from "./Login.js";
-import Registration from "./RegistrationForm.js";
+import LoginForm from "./LoginForm.js";
+import RegistrationForm from "./RegistrationForm.js";
 import AppContainer from "./AppContainer.js";
 import LoginSignup from "./LoginSignup.js";
 
+// passing loginClick and registerClick and destructuring it from props object
 const NavBar = ({ loginClick, registerClick }) => {
 
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  // this state tracks whether to show or hide the sign up/login pop up box.
+  const [showPopUp, setShowPopUp] = useState(false);
 
-  const showSignup = () => {
-    setShowLoginModal(true);
+  // Toggle showPopUp between true and false
+  const togglePopUp = () => {
+    setShowPopUp((showPopUp) => !showPopUp);
   }
-  const hideSignup = () => {
-    setShowLoginModal(false);
-  }
-  // const handleLogin = (e) => {
-  //   loginClick(e);
-  //   //trigger login page
-  // };
-  // const handleRegister = (e) => {
-  //   registerClick(e);
-  //   //trigger register page
-  // };
 
   return (
     <div className="navBar">
-      <LoginSignup show={showLoginModal} hideSignup={hideSignup} />
+      {showPopUp && <LoginSignup togglePopUp={togglePopUp} />}
       <div class='navBarBg'>
         <span>
-          <button className="navBarLogin" onClick={showSignup}>
+          <button className="navBarLogin" onClick={togglePopUp}>
             <label>Sign In</label>
           </button>
           <span className="title">
-            Webpack My Stack
+            Webpack Generator
           </span>
         </span>
-        
       </div>
     </div>
   );

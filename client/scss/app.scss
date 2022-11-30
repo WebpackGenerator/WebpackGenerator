@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: rgb(244, 232, 248);
+  background-color: rgb(184, 184, 184);
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -8,10 +8,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color:rgb(166, 83, 193);
+  color:rgb(255, 255, 255);
   font-weight: 800;
   font-size: 30px;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
 /* containers */
@@ -29,7 +30,7 @@ main {
 
 .formContainer {
   padding: 1rem;
-  background-color: rgb(198, 156, 212);
+  background-color: rgb(139, 139, 139);
 }
 
 .formContainer, 
@@ -56,8 +57,10 @@ main {
 .formContainer {
   // width: 60%;
   height: 100%;
-  background-color: rgb(160, 132, 199); 
+  background-color: rgb(139, 139, 139); 
   align-items: stretch;
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 9px;
 }
 .indentedOptions {
   margin-left: 2em;
@@ -78,8 +81,9 @@ main {
 .codeContainer {
   width: 40%;
   height: 100%;
-  background-color: rgb(198, 156, 212); 
-  // position: relative;
+  background-color: rgb(139, 139, 139); 
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 9px;
 }
 .webpackCode textarea {
   margin: 2vw 2vw 1vw 2vw;
@@ -104,11 +108,9 @@ main {
   // width: 100%;
   display: inline;
   height: 3rem;
-  // background-color: rgb(120, 231, 194);
-  background-color: rgb(244, 232, 248);
 }
 .navBarBg {
-  background-color: rgb(237, 218, 243);
+  background-color: transparent;
 }
 
 /* login and signup */
@@ -135,7 +137,7 @@ main {
 
 .navBarLogin {
   padding: .6rem;
-  background-color: rgb(198, 156, 212);
+  background-color: rgb(139, 139, 139);
   border: 0px;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 500;
@@ -143,7 +145,7 @@ main {
 }
 
 .loginSignup {
-  background-color: rgb(226, 206, 232);
+  background-color: rgb(139, 139, 139);
   padding: 3vw;
 }
 .show{
