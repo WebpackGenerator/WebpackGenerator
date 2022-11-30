@@ -65,5 +65,40 @@ userController.verifyUser = async (req, res, next) => {
   }
 };
 
+// PersonModel.update(
+//   { _id: person._id }, 
+//   { $push: { friends: friend } },
+//   done
+// );
+
+
+userController.addTemplate = async (req,res,next) => {
+  try {
+    const {username, title, template, npmCommand} = req.body;
+    const obj = {title, template, npmCommand};
+    const updated = await Users.findOneAndUpdate( {email: username}, {$push: {template: obj}} )
+    res.locals.updated = updated;
+    console.log(updated);
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+}
+
+userController.getTemplates = async (req, res, next) => {
+  try {
+    const {username} = req.params
+    console.log(username)
+    const user = await Users.findOne({
+      email: username,
+      // password: password
+    });
+    console.log(user);
+    res.locals.user = user
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+}
 
 module.exports = userController;

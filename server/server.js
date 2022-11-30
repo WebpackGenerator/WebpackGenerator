@@ -76,6 +76,15 @@ app.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).json({username: res.locals.user});
 });
 
+app.post('/templates', userController.addTemplate, (req, res) => {
+  return res.status(200).json(res.locals.updated);
+});
+
+
+app.get('/templates/:username', userController.getTemplates, (req, res) => {
+  return res.status(200).json(res.locals.user);
+});
+
 
 
 // Handle all remaining endpoints that are not captured in the server/routers.
