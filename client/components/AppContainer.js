@@ -11,11 +11,11 @@ import Download from './Download.js';
 const AppContainer = () => {
   const [showLogin, setLoginVisual] = useState(true);
   const [showRegister, setRegisterVisual] = useState(true);
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState('');
 
-  const logInUser = () => {
+  const logInUser = (username) => {
     alert('logged in')
-    setUserLoggedIn((userLoggedIn) => true);
+    setUserLoggedIn((userLoggedIn) => username);
   }
 
   // handle login click

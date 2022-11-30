@@ -31,9 +31,10 @@ const LoginForm = ({ logInUser, swapView, closeSignup }) => {
     .then(res => res.json())
     .then((result) => {
       console.log('email form login:', result);
-      if (result) {
-        logInUser();
+      if (result.username) {
+        logInUser(result.username);
       }
+      
     });
   };
   return (
@@ -41,10 +42,10 @@ const LoginForm = ({ logInUser, swapView, closeSignup }) => {
     <div className='closeSignup' onClick={closeSignup}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
-          <label>Email:</label>      
+          <label>Username:</label>      
           <input
             type="text"
-            placeholder="Email"
+            placeholder="Username"
             value={username}
             onChange={(e) => updateUsername(e)}
           ></input>
