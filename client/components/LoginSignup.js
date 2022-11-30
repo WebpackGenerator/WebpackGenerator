@@ -17,7 +17,7 @@ const LoginSignup = ({ logInUser, togglePopUp }) => {
     <div id="lrModal">
       <div id='loginSignup'>
         {/* Render either the login form or the sign up form inside of the pop-up. */}
-        {showLogin ? <LoginForm logInUser={logInUser} swapView={swapLoginView} closeSignup={togglePopUp}/> : <RegistrationForm logInUser={logInUser} swapView={swapLoginView} closeSignup={togglePopUp} />}
+        {showLogin ? <LoginForm logInUser={logInUser} swapView={swapLoginView} togglePopUp={togglePopUp}/> : <RegistrationForm logInUser={logInUser} swapView={swapLoginView} togglePopUp={togglePopUp} />}
       </div>
     </div>
   );

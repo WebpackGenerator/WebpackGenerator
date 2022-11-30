@@ -5,9 +5,10 @@ import OAuthButton from './OAuthButton';
 
 
 
-const LoginForm = ({ logInUser, swapView, closeSignup }) => {
+const LoginForm = ({ logInUser, swapView, togglePopUp }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const updateUsername = (event) => {
     setUsername(event.target.value);
@@ -31,20 +32,24 @@ const LoginForm = ({ logInUser, swapView, closeSignup }) => {
     .then(res => res.json())
     .then((result) => {
       console.log('email form login:', result);
-      if (result) {
-        logInUser();
+      if (result.username) {
+        logInUser(result.username);
+        togglePopUp();
+      }
+      else {
+        setError('Wrong username or password')
       }
     });
   };
   return (
     <div className={`loginSignup`}>
-    <div className='closeSignup' onClick={closeSignup}>X</div>
+    <div className='closeSignup' onClick={togglePopUp}>X</div>
       <form className="loginContainer" onSubmit={(e) => submitLogin(e)}>
         <div className="loginAndPassword">
-          <label>Email:</label>      
+          <label>Username:</label>      
           <input
             type="text"
-            placeholder="Email"
+            placeholder="Username"
             value={username}
             onChange={(e) => updateUsername(e)}
           ></input>
@@ -62,6 +67,7 @@ const LoginForm = ({ logInUser, swapView, closeSignup }) => {
         <div className="submitLogin">
           <input type="submit" value="Submit"></input>
         </div>
+        <div className='error-message'>{error}</div>
       </form>
 
       <OAuthButton content="Login with Google" />

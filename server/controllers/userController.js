@@ -15,7 +15,7 @@ userController.createUser = async (req, res, next) => {
         email: email,
         password: hashedPass,
     })
-    res.locals.user = user;
+    res.locals.user = user.email;
     return next();
   }
   catch(err) {
@@ -37,7 +37,11 @@ userController.verifyUser = async (req, res, next) => {
       email: email,
       // password: password
     });
-    if (user === null) return next({err: "Wrong email or password"});
+    if (user === null) return next({
+      log: 'Express error handler caught in UsersController.verifyUser middleware error',
+      status: 400,
+      message: { err: 'Wrong Username or Password' },
+    });
     bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) {
         return next({
@@ -47,7 +51,7 @@ userController.verifyUser = async (req, res, next) => {
         });
       }
     })
-    res.locals.user = user;
+    res.locals.user = user.email;
     return next();
   } 
   catch(err) {
@@ -61,5 +65,40 @@ userController.verifyUser = async (req, res, next) => {
   }
 };
 
+// PersonModel.update(
+//   { _id: person._id }, 
+//   { $push: { friends: friend } },
+//   done
+// );
+
+
+userController.addTemplate = async (req,res,next) => {
+  try {
+    const {username, title, template, npmCommand} = req.body;
+    const obj = {title, template, npmCommand};
+    const updated = await Users.findOneAndUpdate( {email: username}, {$push: {template: obj}} )
+    res.locals.updated = updated;
+    console.log(updated);
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+}
+
+userController.getTemplates = async (req, res, next) => {
+  try {
+    const {username} = req.params
+    console.log(username)
+    const user = await Users.findOne({
+      email: username,
+      // password: password
+    });
+    console.log(user);
+    res.locals.user = user
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+}
 
 module.exports = userController;

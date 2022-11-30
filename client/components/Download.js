@@ -37,10 +37,18 @@ const Download = () => {
     });
   }
 
+  const save = () => {
+    console.log(webpackString)
+    console.log(projectName);
+    console.log(template)
+  }
   return (
-    <button className="download" onClick={download}>
-      DOWNLOAD
-    </button>
+    <div>
+      <button className="download" onClick={download}>
+        DOWNLOAD
+      </button>
+      <button onClick= {save}>Save</button>
+    </div>
   );
 };
 

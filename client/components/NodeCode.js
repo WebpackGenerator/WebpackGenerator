@@ -30,6 +30,13 @@ function NodeCode() {
 
   //plugins
 
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(saveWebpackCodeActionCreator(boilerplate))
+  // }, [template]) 
+
+
   let boilerplate = `\
   npm i -D webpack ${
     template.webpack ? `webpack-cli webpack-dev-server` : ``

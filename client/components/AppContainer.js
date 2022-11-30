@@ -5,17 +5,16 @@ import React, { useEffect, useState } from 'react';
 import WebpackCode from './WebpackCode.js';
 import NodeCode from './NodeCode.js';
 import NavBar from './NavBar.js';
-import FormInput from './WebpackUserInput.js';
+import WebpackUserInput from './WebpackUserInput.js';
 import Download from './Download.js';
 
 const AppContainer = () => {
   const [showLogin, setLoginVisual] = useState(true);
   const [showRegister, setRegisterVisual] = useState(true);
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState('');
 
-  const logInUser = () => {
-    alert('logged in')
-    setUserLoggedIn((userLoggedIn) => true);
+  const logInUser = (username) => {
+    setUserLoggedIn((userLoggedIn) => username);
   }
 
   // handle login click
@@ -33,11 +32,11 @@ const AppContainer = () => {
   return (
     <div className="appContainer">
       <div className="navBar">
-        <NavBar logInUser={logInUser} loginClick={loginClick} registerClick={registerClick} />
+        <NavBar userLoggedIn={userLoggedIn} logInUser={logInUser} loginClick={loginClick} registerClick={registerClick} />
       </div>
       <main>
         <div className="questionContainer">
-          <FormInput />
+          <WebpackUserInput />
         </div>
         <div className="codeContainer">  
           <WebpackCode />
