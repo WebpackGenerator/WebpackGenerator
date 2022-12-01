@@ -18,6 +18,7 @@ userController.createUser = async (req, res, next) => {
     res.locals.user = user.email;
     return next();
   }
+  
   catch(err) {
     console.log('userController.createUser: caught error');
     next(
