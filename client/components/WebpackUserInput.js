@@ -202,7 +202,7 @@ const FormInput = (props) => {
         </div>
       </form>
 
-      <Download />
+      <Download userLoggedIn={props.userLoggedIn}/>
     </div>
   );
 };
