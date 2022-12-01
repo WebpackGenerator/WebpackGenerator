@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
+
 require("dotenv").config();
 
 // ${process.env.PASSWORD}
 
+const MONGO_URI = 'mongodb+srv://webpackmystack:lipfish@cluster0.mqfyalr.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose
-  .connect(global.__MONGO_URI_PROD__, {
+  .connect(MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -27,6 +29,8 @@ const userSchema = new Schema({
   template: { type: Array }
 });
 
-const Users = mongoose.model("users", userSchema);
+// const Users = mongoose.model("users", userSchema);
 
-module.exports = Users;
+// module.exports = Users;
+
+module.exports = mongoose.model('Users', userSchema);
