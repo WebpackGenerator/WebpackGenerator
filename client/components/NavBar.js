@@ -7,7 +7,7 @@ import AppContainer from "./AppContainer.js";
 import LoginSignup from "./LoginSignup.js";
 
 // passing loginClick and registerClick and destructuring it from props object
-const NavBar = ({ userLoggedIn, logInUser, loginClick, registerClick }) => {
+const NavBar = ({displayTemplates, showTemplates, userLoggedIn, logInUser, loginClick, registerClick }) => {
 
   // this state tracks whether to show or hide the sign up/login pop up box.
   const [showPopUp, setShowPopUp] = useState(false);
@@ -20,21 +20,27 @@ const NavBar = ({ userLoggedIn, logInUser, loginClick, registerClick }) => {
   return (
     <div className="navBar">
       {showPopUp && <LoginSignup logInUser={logInUser} togglePopUp={togglePopUp} />}
+     
       <div className='navBarBg'>
-        
-          {userLoggedIn.length > 0 ? <div>Welcome {userLoggedIn}</div> : <button className="navBarLogin" onClick={togglePopUp}>
+        <div className="nav-left">
+        {userLoggedIn.length > 0 ? <div className="username">Welcome {userLoggedIn}</div> : <button className="navBarLogin" onClick={togglePopUp}>
             <label>Sign In</label>
-          </button> 
-          }
+          </button> }
+        </div>
           
+        <div className="nav-middle">
           <div className="title">
             Webpack Generator
           </div>
-          {userLoggedIn.length > 0 ?
-              <button className="navBarLogin" onClick={() => console.log("templates")}>
-              <label>Templates</label>
-              </button> : <div></div>
+        </div>
+
+          <div className="nav-right">
+          {userLoggedIn.length > 0 &&
+              <button className="navBarLogin" onClick={() => showTemplates()}>
+              <label>{displayTemplates ? "Home" : "Templates"}</label>
+              </button>
           }
+          </div>
           
           
         

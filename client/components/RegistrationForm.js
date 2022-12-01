@@ -83,7 +83,7 @@ const RegistrationForm = ({ logInUser, swapView, togglePopUp }) => {
           <br></br>
         </div>
         <div className="submitRegistration">
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Sign up"></input>
         </div>
         <div className='error-message'>{error}</div>
       </form>
