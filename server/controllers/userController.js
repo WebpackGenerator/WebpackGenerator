@@ -16,8 +16,10 @@ userController.createUser = async (req, res, next) => {
         password: hashedPass,
     })
     res.locals.user = user;
+    console.log('------------res.locals.user:', res.locals.user)
     return next();
   }
+  
   catch(err) {
     console.log('userController.createUser: caught error');
     next(

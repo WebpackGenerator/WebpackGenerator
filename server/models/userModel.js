@@ -1,19 +1,22 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-require('dotenv').config();
+require("dotenv").config();
+
 // ${process.env.PASSWORD}
-const MONGO_URI = 'mongodb+srv://webpackmystack:lipfish@cluster0.mqfyalr.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(MONGO_URI, {
-  // options for the connect method to parse the URI
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  // sets the name of the DB that our collections are part of
-  dbName: 'w'
-})
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+
+mongoose
+  .connect(global.__MONGO_URI_PROD__, {
+    // options for the connect method to parse the URI
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // sets the name of the DB that our collections are part of
+    dbName: "w",
+  })
+  .then(() => console.log("Connected to Mongo DB."))
+  .catch((err) => console.log(err));
+// }
 
 const Schema = mongoose.Schema;
 
@@ -24,12 +27,6 @@ const userSchema = new Schema({
   //template: { type: mongoose.SchemaTypes.Mixed, required: false }
 });
 
+const Users = mongoose.model("users", userSchema);
 
-//userSchema.plugin(passportLocalMongoose);
-
-const Users = mongoose.model('users', userSchema);
-
-//module.exports = mongoose.model('userData', usersSchema, 'userData');
-
-
-module.exports = { Users };
+module.exports = Users;
