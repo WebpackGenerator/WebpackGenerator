@@ -77,11 +77,11 @@ app.post('/login', userController.verifyUser, (req, res) => {
 });
 
 app.get('/templates/:username', userController.getTemplates, (req, res) => {
-  return res.status(200).json(res.locals.user);
+  return res.status(200).json(res.locals.user.template);
 });
 
 app.post('/templates', userController.addTemplate, (req, res) => {
-  return res.status(200).json(res.locals.updated);
+  return res.status(200).json(res.locals.updated.template);
 });
 
 

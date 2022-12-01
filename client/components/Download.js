@@ -42,7 +42,6 @@ const Download = ({ userLoggedIn }) => {
 
   const handleTitleNameChange = (e) => {
     setTemplateTitle(e.target.value);
-    console.log(templateTitle);
   }
 
   const save = () => {
