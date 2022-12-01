@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
+  user: '',
   template: {
     miniCssExtractPlugin: false,
     htmlWebpackPlugin: false,
@@ -24,7 +25,8 @@ const initialState = {
     proxy: false,
   },
   projectName: 'MyProject',
-  webpack: 'boilerplate webpack stuff!'
+  webpack: 'boilerplate webpack stuff!',
+  npm: ''
 };
 
 const webpackReducer = (state = initialState, action) => {
@@ -49,6 +51,18 @@ const webpackReducer = (state = initialState, action) => {
         ...state,
         webpack: action.payload
       };
+    
+    case types.PUT_NPM_IN_STATE:
+    return {
+      ...state,
+      npm: action.payload
+    };
+
+    // case types.PUT_USER_IN_STATE:
+    // return {
+    //   ...state,
+    //   user: action.payload
+    // };
  
     default: {
       return state;

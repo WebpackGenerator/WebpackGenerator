@@ -7,10 +7,15 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript, typescriptLanguage } from '@codemirror/lang-javascript';
 import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
+// actions
+import {saveNpmCodeActionCreator} from '../actions/actions';
+
 // import components here
 import CopyButton from './CopyButton';
 
 function NodeCode() {
+
+  const dispatch = useDispatch();
 
   const template = useSelector((state) => state.webpack.template);
 
@@ -26,16 +31,6 @@ function NodeCode() {
   let htmlWebpackPlugin = false;
   let miniCssExtractPlugin = false;
 
-  //loaders
-
-  //plugins
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(saveWebpackCodeActionCreator(boilerplate))
-  // }, [template]) 
-
 
   let boilerplate = `\
   npm i -D webpack ${
@@ -49,7 +44,9 @@ function NodeCode() {
   } ${template.miniCssExtractPlugin ? `mini-css-extract-plugin` : ``}`;
 
   // we will do our initial server calls here
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(saveNpmCodeActionCreator(boilerplate))
+  }, [template]) 
 
   return (
     <div className="nodeCode">

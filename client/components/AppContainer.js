@@ -36,7 +36,7 @@ const AppContainer = () => {
       </div>
       <main>
         <div className="questionContainer">
-          <WebpackUserInput />
+          <WebpackUserInput userLoggedIn={userLoggedIn}/>
         </div>
         <div className="codeContainer">  
           <WebpackCode />

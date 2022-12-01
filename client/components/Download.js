@@ -7,11 +7,14 @@ import JSZip from 'JSZip';
 
 //import files
 
-const Download = () => {
+const Download = ({ userLoggedIn }) => {
+
+  const [ templateTitle, setTemplateTitle ] = useState('');
 
   const projectName = useSelector(state => state.webpack.projectName);
   const template = useSelector(state => state.webpack.template);
   const webpackString = useSelector(state => state.webpack.webpack);
+  const npmString = useSelector(state => state.webpack.npm);
 
   const download = () => {
     const zip = new JSZip();
@@ -37,17 +40,36 @@ const Download = () => {
     });
   }
 
+  const handleTitleNameChange = (e) => {
+    setTemplateTitle(e.target.value);
+    console.log(templateTitle);
+  }
+
   const save = () => {
-    console.log(webpackString)
-    console.log(projectName);
-    console.log(template)
+    // console.log(webpackString)
+    //console.log(projectName);
+    // console.log(npmString);
+    const data = {
+      username: userLoggedIn,
+      title: templateTitle,
+      template: webpackString,
+      npmCommand: npmString
+    };
+
+    fetch("/templates", {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then(result => console.log(result))
   }
   return (
     <div>
       <button className="download" onClick={download}>
         DOWNLOAD
       </button>
-      <button onClick= {save}>Save</button>
+      <button onClick= {save}>Save</button> <span><input onChange={(e) => handleTitleNameChange(e)} placeholder="template name..."></input></span>
     </div>
   );
 };

@@ -1,2 +1,4 @@
 export const UPDATE_FORM = 'UPDATE_FORM';
 export const PUT_WEBPACK_IN_STATE = 'PUT_WEBPACK_IN_STATE';
+export const PUT_NPM_IN_STATE = 'PUT_NPM_IN_STATE';
+// export const PUT_USER_IN_STATE = 'PUT_USER_IN_STATE';
