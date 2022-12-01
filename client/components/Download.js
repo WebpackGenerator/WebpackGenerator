@@ -17,9 +17,16 @@ const Download = ({ userLoggedIn }) => {
   const npmString = useSelector(state => state.webpack.npm);
 
   const download = () => {
+
     const zip = new JSZip();
 
-    const projectFolder = zip.folder(projectName);
+    let name = projectName;
+
+    if (templateTitle) {
+      name = templateTitle;
+    }
+
+    const projectFolder = zip.folder(name);
     projectFolder.file("webpack.config.js", webpackString);
 
     let entryPath;
@@ -45,9 +52,6 @@ const Download = ({ userLoggedIn }) => {
   }
 
   const save = () => {
-    // console.log(webpackString)
-    //console.log(projectName);
-    // console.log(npmString);
     const data = {
       username: userLoggedIn,
       title: templateTitle,
@@ -65,10 +69,15 @@ const Download = ({ userLoggedIn }) => {
   }
   return (
     <div>
+      <div className="button-container">
       <button className="download" onClick={download}>
         DOWNLOAD
       </button>
-      <button onClick= {save}>Save</button> <span><input onChange={(e) => handleTitleNameChange(e)} placeholder="template name..."></input></span>
+      </div>
+
+    <div className="button-container">
+      <button className="save-button" onClick= {save}>Save</button> <span><input onChange={(e) => handleTitleNameChange(e)} placeholder="template name..."></input></span>
+      </div>
     </div>
   );
 };

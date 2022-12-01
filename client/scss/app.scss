@@ -4,6 +4,56 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+// .navBar {
+//   display: flex;
+//   justify-content: center;
+
+// }
+
+.navBarBg {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(139, 139, 139);
+  margin-bottom: 1rem;
+  align-items: center;
+  
+}
+
+.nav-left {
+  flex-grow: 1;
+  padding-left: .5rem;
+}
+
+.nav-right {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: .5rem;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.nav-middle {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBarLogin {
+  padding: .6rem;
+  border: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 16px;
+
+}
+
+
+
 .title {
   display: flex;
   justify-content: center;
@@ -26,6 +76,10 @@ main {
   display: flex;
   justify-content: center;
   gap: 3rem;
+}
+
+.saved-template {
+  font-weight: 600;
 }
 
 .error-message {
@@ -82,6 +136,18 @@ main {
   position: absolute;
 }
 
+.button-container {
+  margin: 1rem 0rem;
+}
+
+.save-button {
+  // margin: 1rem;
+  // width: 40%;
+  // height: 2vw;
+  // bottom: 0;
+  // position: absolute;
+}
+
 /* code */
 .codeContainer {
   width: 40%;
@@ -108,18 +174,13 @@ main {
   border: 0;
 }
 
-/* nav */
-.navBar {
-  // width: 100%;
-  // display: inline;
-  // height: 3rem;
+.saved-templates {
+  padding-left: 1rem;
+  padding-top: 1rem;
+
 }
-.navBarBg {
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
+
 
 /* login and signup */
 .dontShow {
@@ -143,14 +204,7 @@ main {
   height: 400px;
 }
 
-.navBarLogin {
-  padding: .6rem;
-  background-color: rgb(139, 139, 139);
-  border: 0px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 500;
-  font-size: 16px;
-}
+
 
 .loginSignup {
   background-color: rgb(139, 139, 139);

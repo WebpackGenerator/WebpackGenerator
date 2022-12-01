@@ -65,7 +65,7 @@ const LoginForm = ({ logInUser, swapView, togglePopUp }) => {
           <br></br>
         </div>
         <div className="submitLogin">
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Log in"></input>
         </div>
         <div className='error-message'>{error}</div>
       </form>
