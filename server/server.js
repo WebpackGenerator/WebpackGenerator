@@ -58,7 +58,7 @@ app.get('/', isLoggedIn, (req, res) => {
 
 // Handle the user registration logic and user creation middleware functionality.
 app.post('/register', userController.createUser, (req, res) => {
-  return res.status(200).json(res.locals.user.email);
+  return res.status(200).json({username: res.locals.user});
 });
 
 
@@ -73,8 +73,21 @@ app.post('/login', userController.verifyUser, (req, res) => {
   // if (!errors.isEmpty()) {
   //   return res.status(422).json({ errors: errors.array() });
 	// }
-  return res.status(200).json(res.locals.user.email);
+  return res.status(200).json({username: res.locals.user});
 });
+
+app.get('/templates/:username', userController.getTemplates, (req, res) => {
+  return res.status(200).json(res.locals.user.template);
+});
+
+app.post('/templates', userController.addTemplate, (req, res) => {
+  return res.status(200).json(res.locals.updated.template);
+});
+
+
+// app.get('/templates/:username', userController.getTemplates, (req, res) => {
+//   return res.status(200).json(res.locals.user);
+// });
 
 
 

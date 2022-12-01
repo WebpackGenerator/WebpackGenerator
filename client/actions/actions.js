@@ -14,3 +14,17 @@ export const saveWebpackCodeActionCreator = webpackString => {
     payload: webpackString,
   })
 };
+
+export const saveNpmCodeActionCreator = npmString => {
+  return ({
+    type: types.PUT_NPM_IN_STATE,
+    payload: npmString,
+  })
+};
+
+// export const saveUserCodeActionCreator = username => {
+//   return ({
+//     type: types.PUT_USER_IN_STATE,
+//     payload: username,
+//   })
+// };

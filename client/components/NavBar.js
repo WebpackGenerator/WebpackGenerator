@@ -7,7 +7,7 @@ import AppContainer from "./AppContainer.js";
 import LoginSignup from "./LoginSignup.js";
 
 // passing loginClick and registerClick and destructuring it from props object
-const NavBar = ({ logInUser, loginClick, registerClick }) => {
+const NavBar = ({ userLoggedIn, logInUser, loginClick, registerClick }) => {
 
   // this state tracks whether to show or hide the sign up/login pop up box.
   const [showPopUp, setShowPopUp] = useState(false);
@@ -21,14 +21,23 @@ const NavBar = ({ logInUser, loginClick, registerClick }) => {
     <div className="navBar">
       {showPopUp && <LoginSignup logInUser={logInUser} togglePopUp={togglePopUp} />}
       <div className='navBarBg'>
-        <span>
-          <button className="navBarLogin" onClick={togglePopUp}>
+        
+          {userLoggedIn.length > 0 ? <div>Welcome {userLoggedIn}</div> : <button className="navBarLogin" onClick={togglePopUp}>
             <label>Sign In</label>
-          </button>
-          <span className="title">
+          </button> 
+          }
+          
+          <div className="title">
             Webpack Generator
-          </span>
-        </span>
+          </div>
+          {userLoggedIn.length > 0 ?
+              <button className="navBarLogin" onClick={() => console.log("templates")}>
+              <label>Templates</label>
+              </button> : <div></div>
+          }
+          
+          
+        
       </div>
     </div>
   );

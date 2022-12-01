@@ -28,6 +28,11 @@ main {
   gap: 3rem;
 }
 
+.error-message {
+  color: red;
+  margin-top: .4rem;
+}
+
 .formContainer {
   padding: 1rem;
   background-color: rgb(139, 139, 139);
@@ -106,11 +111,14 @@ main {
 /* nav */
 .navBar {
   // width: 100%;
-  display: inline;
-  height: 3rem;
+  // display: inline;
+  // height: 3rem;
 }
 .navBarBg {
   background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* login and signup */
