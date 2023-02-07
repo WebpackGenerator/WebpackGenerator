@@ -41,6 +41,11 @@ app.use(passport.session());
 //   return res.send('<a href="/auth/google"> Authenticate with Google </a>');
 // });
 
+
+// app.get('/', (req, res) => {
+//   res.send('<a href="/auth/google"> Authenticate with Google </a>');
+// });
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
 ));
@@ -60,7 +65,6 @@ app.get('/', isLoggedIn, (req, res) => {
 app.post('/register', userController.createUser, (req, res) => {
   return res.status(200).json({username: res.locals.user});
 });
-
 
 
 // Handle user login to validate and verify the input data.
