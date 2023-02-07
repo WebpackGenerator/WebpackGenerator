@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 //import files here
 import OAuthButton from './OAuthButton';
 
-const Registration = (props) => {
+const RegistrationForm = ({ logInUser, swapView, togglePopUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [registrationSuccess, setRegistrationSuccess] = useState(null);
+  const [error, setError] = useState('');
 
   const updateEmail = (event) => {
     setEmail(event.target.value);
@@ -18,42 +18,47 @@ const Registration = (props) => {
   const passwordConfirmation = (event) => {
     setConfirmPassword(event.target.value);
   };
-  // const registered = (event) => {
-  //   setRegistrationSuccess(event.target.value);
-  // };
+
   const submitUser = (event) => {
     event.preventDefault();
-    if (email && password && confirmPassword && password === confirmPassword) {
-      const data = {
-        email,
-        password,
-      };
-      fetch("/register", {
-        method: "POST",
-        headers: { "Content-Type": "Application/JSON" },
-        body: JSON.stringify(data),
-      }).then((result) => {
-        if (result.status === 200) {
-          console.log(result);
-          // registered("Registration successfull");
-          //redirect to the home page
-          // redirectHome();
-        } else {
-          // showError("There was an error");
-        }
-      });
+    if (email && password && confirmPassword) {
+      if (password === confirmPassword) {
+        const data = {
+          email,
+          password,
+        };
+        fetch("/register", {
+          method: "POST",
+          headers: { "Content-Type": "Application/JSON" },
+          body: JSON.stringify(data),
+        })
+        .then(res => res.json())
+        .then((result) => {
+          console.log("email: ", result);
+          if (result.username) {
+            logInUser(result.username);
+            togglePopUp();
+          }
+          else {
+            setError('Username taken')
+          }
+        });
+      }
+      else {
+        setError('Passwords do not match')
+      }
     }
   };
 
   return (
-    <div className={`loginSignup ${props.show ? "active" : ""} show`}>
-    <div className='closeSignup' onClick={props.closeSignup}>X</div>
+    <div className={`loginSignup`}>
+    <div className='closeSignup' onClick={togglePopUp}>X</div>
       <form className="registrationForm" onSubmit={(e) => submitUser(e)}>
         <div className="registrationInputs">
-          <label>Email Address:</label>
+          <label>Username:</label>
           <input
             type="text"
-            placeholder="Enter Email"
+            placeholder="Enter Username"
             value={email}
             onChange={(e) => updateEmail(e)}
           ></input>
@@ -78,16 +83,16 @@ const Registration = (props) => {
           <br></br>
         </div>
         <div className="submitRegistration">
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Sign up"></input>
         </div>
+        <div className='error-message'>{error}</div>
       </form>
 
-      <OAuthButton content="Sign in sith Google" />
+      <OAuthButton />
 
-
-      <div className='switchView' onClick={props.swapView}>LOG IN</div>
+      <div className='switchView' onClick={swapView}>LOG IN</div>
     </div>
   );
 };
 
-export default Registration;
+export default RegistrationForm;

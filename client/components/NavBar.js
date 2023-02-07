@@ -1,42 +1,48 @@
 import React, { useEffect, useState } from "react";
 
 //import files
-import LoginForm from "./Login.js";
-import Registration from "./RegistrationForm.js";
+import LoginForm from "./LoginForm.js";
+import RegistrationForm from "./RegistrationForm.js";
 import AppContainer from "./AppContainer.js";
 import LoginSignup from "./LoginSignup.js";
 
-const NavBar = ({ loginClick, registerClick }) => {
+// passing loginClick and registerClick and destructuring it from props object
+const NavBar = ({displayTemplates, showTemplates, userLoggedIn, logInUser, loginClick, registerClick }) => {
 
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  // this state tracks whether to show or hide the sign up/login pop up box.
+  const [showPopUp, setShowPopUp] = useState(false);
 
-  const showSignup = () => {
-    setShowLoginModal(true);
+  // Toggle showPopUp between true and false
+  const togglePopUp = () => {
+    setShowPopUp((showPopUp) => !showPopUp);
   }
-  const hideSignup = () => {
-    setShowLoginModal(false);
-  }
-  // const handleLogin = (e) => {
-  //   loginClick(e);
-  //   //trigger login page
-  // };
-  // const handleRegister = (e) => {
-  //   registerClick(e);
-  //   //trigger register page
-  // };
 
   return (
     <div className="navBar">
-      <LoginSignup show={showLoginModal} hideSignup={hideSignup} />
-      <div class='navBarBg'>
-        <span>
-          <button className="navBarLogin" onClick={showSignup}>
+      {showPopUp && <LoginSignup logInUser={logInUser} togglePopUp={togglePopUp} />}
+     
+      <div className='navBarBg'>
+        <div className="nav-left">
+        {userLoggedIn.length > 0 ? <div className="username">Welcome {userLoggedIn}</div> : <button className="navBarLogin" onClick={togglePopUp}>
             <label>Sign In</label>
-          </button>
-          <span className="title">
-            Webpack My Stack
-          </span>
-        </span>
+          </button> }
+        </div>
+          
+        <div className="nav-middle">
+          <div className="title">
+            Webpack Generator
+          </div>
+        </div>
+
+          <div className="nav-right">
+          {userLoggedIn.length > 0 &&
+              <button className="navBarLogin" onClick={() => showTemplates()}>
+              <label>{displayTemplates ? "Home" : "Templates"}</label>
+              </button>
+          }
+          </div>
+          
+          
         
       </div>
     </div>

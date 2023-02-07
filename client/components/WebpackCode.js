@@ -15,20 +15,7 @@ import {saveWebpackCodeActionCreator} from '../actions/actions';
 // import components here
 import CopyButton from './CopyButton';
 
-// const mapStateToProps = state => {
-//   console.log('STATE', state.webpack);
-//   return state.webpack.template
-// };
-
-
-// IN WebpackCode add:
-// add   const dispatch = useDispatch()
-// use   dispatch(actions.saveWebpackCodeActionCreator(webpackString))
-// do this to save webpack code content in state which we'll pull from here
-
-
-function WebpackCode() {
-
+const WebpackCode = () => {
 
   const template = useSelector(state => state.webpack.template);
   
@@ -36,16 +23,8 @@ function WebpackCode() {
 
   // on change of the template, save the state content
   useEffect(() => {
-    // SAVE CODE TO STATE
     dispatch(saveWebpackCodeActionCreator(boilerplate))
   }, [template]) 
-
-  // update everything when state changes
-  // useEffect(()=> {
-  //   console.log("TEST");
-  // },)
-
-  // console.log('TEMPLATE', template);
 
   let boilerplate = `\
 const path = require('path');
@@ -132,20 +111,13 @@ module.exports = {
   }
 };
 `;
-  // on change callback, i dont think we need this?
-  // const onChange = React.useCallback((value, viewUpdate) => {
-  //   console.log('value:', value);
-  // }, []);
-
 
   return (
     <div className="webpackCode">
       <CodeMirror
         value={boilerplate}
-        // height="75%"
         theme={okaidia}
         extensions={[javascript({ jsx: true })]}
-        //onChange={onChange}
         readOnly="nocursor"
         basicSetup={{
           lineNumbers: false,
@@ -159,4 +131,3 @@ module.exports = {
 }
 
 export default WebpackCode;
-//export default connect(mapStateToProps, null)(WebpackCode);

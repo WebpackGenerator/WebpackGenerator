@@ -2,30 +2,22 @@
 import React, { useState } from "react";
 
 // import components here
-import LoginForm from "./Login.js";
-import Registration from "./RegistrationForm.js";
+import LoginForm from "./LoginForm.js";
+import RegistrationForm from "./RegistrationForm.js";
 
-function LoginSignup(props) {
-  const [showLogin, setLoginVisual] = useState(true);
+const LoginSignup = ({ logInUser, togglePopUp }) => {
+  const [showLogin, setShowLogin] = useState(true);
 
-
-  // this will contain all the logic for our components
-
-  //handle login click
+  // swap the views of the sign up and login pages in the popup.
   const swapLoginView = (e) => {
-    setLoginVisual((showLogin) => !showLogin);
+    setShowLogin((showLogin) => !showLogin);
   };
-
-  let display = 'dontShow';
-  if (props.show) {
-    display = '';
-  }
-
+  
   return (
-    <div id="lrModal" className={display}>
+    <div id="lrModal">
       <div id='loginSignup'>
-        <LoginForm show={!showLogin} swapView={swapLoginView} closeSignup={props.hideSignup}/>
-        <Registration show={showLogin} swapView={swapLoginView} closeSignup={props.hideSignup} />
+        {/* Render either the login form or the sign up form inside of the pop-up. */}
+        {showLogin ? <LoginForm logInUser={logInUser} swapView={swapLoginView} togglePopUp={togglePopUp}/> : <RegistrationForm logInUser={logInUser} swapView={swapLoginView} togglePopUp={togglePopUp} />}
       </div>
     </div>
   );

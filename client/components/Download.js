@@ -7,16 +7,26 @@ import JSZip from 'JSZip';
 
 //import files
 
-const Download = () => {
+const Download = ({ userLoggedIn }) => {
+
+  const [ templateTitle, setTemplateTitle ] = useState('');
 
   const projectName = useSelector(state => state.webpack.projectName);
   const template = useSelector(state => state.webpack.template);
   const webpackString = useSelector(state => state.webpack.webpack);
+  const npmString = useSelector(state => state.webpack.npm);
 
   const download = () => {
+
     const zip = new JSZip();
 
-    const projectFolder = zip.folder(projectName);
+    let name = projectName;
+
+    if (templateTitle) {
+      name = templateTitle;
+    }
+
+    const projectFolder = zip.folder(name);
     projectFolder.file("webpack.config.js", webpackString);
 
     let entryPath;
@@ -37,10 +47,38 @@ const Download = () => {
     });
   }
 
+  const handleTitleNameChange = (e) => {
+    setTemplateTitle(e.target.value);
+  }
+
+  const save = () => {
+    const data = {
+      username: userLoggedIn,
+      title: templateTitle,
+      template: webpackString,
+      npmCommand: npmString
+    };
+
+    fetch("/templates", {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then(result => console.log(result))
+  }
   return (
-    <button className="download" onClick={download}>
-      DOWNLOAD
-    </button>
+    <div>
+      <div className="button-container">
+      <button className="download" onClick={download}>
+        DOWNLOAD
+      </button>
+      </div>
+
+    <div className="button-container">
+      <button className="save-button" onClick= {save}>Save</button> <span><input onChange={(e) => handleTitleNameChange(e)} placeholder="template name..."></input></span>
+      </div>
+    </div>
   );
 };
 

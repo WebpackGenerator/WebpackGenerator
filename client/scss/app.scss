@@ -1,17 +1,68 @@
 body {
   margin: 0;
-  background-color: rgb(244, 232, 248);
+  background-color: rgb(184, 184, 184);
   font-family: 'Courier New', Courier, monospace;
 }
+
+// .navBar {
+//   display: flex;
+//   justify-content: center;
+
+// }
+
+.navBarBg {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(139, 139, 139);
+  margin-bottom: 1rem;
+  align-items: center;
+  
+}
+
+.nav-left {
+  flex-grow: 1;
+  padding-left: .5rem;
+}
+
+.nav-right {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: .5rem;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.nav-middle {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBarLogin {
+  padding: .6rem;
+  border: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 16px;
+
+}
+
+
 
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
-  color:rgb(166, 83, 193);
+  color:rgb(255, 255, 255);
   font-weight: 800;
   font-size: 30px;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
 /* containers */
@@ -27,9 +78,18 @@ main {
   gap: 3rem;
 }
 
+.saved-template {
+  font-weight: 600;
+}
+
+.error-message {
+  color: red;
+  margin-top: .4rem;
+}
+
 .formContainer {
   padding: 1rem;
-  background-color: rgb(198, 156, 212);
+  background-color: rgb(139, 139, 139);
 }
 
 .formContainer, 
@@ -56,8 +116,10 @@ main {
 .formContainer {
   // width: 60%;
   height: 100%;
-  background-color: rgb(160, 132, 199); 
+  background-color: rgb(139, 139, 139); 
   align-items: stretch;
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 9px;
 }
 .indentedOptions {
   margin-left: 2em;
@@ -74,12 +136,25 @@ main {
   position: absolute;
 }
 
+.button-container {
+  margin: 1rem 0rem;
+}
+
+.save-button {
+  // margin: 1rem;
+  // width: 40%;
+  // height: 2vw;
+  // bottom: 0;
+  // position: absolute;
+}
+
 /* code */
 .codeContainer {
   width: 40%;
   height: 100%;
-  background-color: rgb(198, 156, 212); 
-  // position: relative;
+  background-color: rgb(139, 139, 139); 
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 9px;
 }
 .webpackCode textarea {
   margin: 2vw 2vw 1vw 2vw;
@@ -99,17 +174,13 @@ main {
   border: 0;
 }
 
-/* nav */
-.navBar {
-  // width: 100%;
-  display: inline;
-  height: 3rem;
-  // background-color: rgb(120, 231, 194);
-  background-color: rgb(244, 232, 248);
+.saved-templates {
+  padding-left: 1rem;
+  padding-top: 1rem;
+
 }
-.navBarBg {
-  background-color: rgb(237, 218, 243);
-}
+
+
 
 /* login and signup */
 .dontShow {
@@ -133,17 +204,10 @@ main {
   height: 400px;
 }
 
-.navBarLogin {
-  padding: .6rem;
-  background-color: rgb(198, 156, 212);
-  border: 0px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 500;
-  font-size: 16px;
-}
+
 
 .loginSignup {
-  background-color: rgb(226, 206, 232);
+  background-color: rgb(139, 139, 139);
   padding: 3vw;
 }
 .show{
@@ -151,11 +215,7 @@ main {
   transition: 800ms;
   opacity: 1;
 }
-.show.active{
-  // transform: translateY(100px) scale(0) rotateY(180deg);
-  //opacity: 0;
-  display: none;
-}
+
 
 /* code mirrors */
 .webpackCode {
