@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 require('dotenv').config();
-// ${process.env.PASSWORD}
-const MONGO_URI = 'mongodb+srv://webpackmystack:lipfish@cluster0.mqfyalr.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
